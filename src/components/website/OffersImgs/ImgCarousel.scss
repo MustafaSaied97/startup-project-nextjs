@@ -1,0 +1,17 @@
+
+ul#dots-container {
+  li.slick-active {
+    // background-color: red !important;
+
+    .dot-item {
+      // @apply bg-red-500;
+      background-color: red !important;
+    }
+  }
+  li {
+    margin: 0px;
+    padding: 0px;
+    .dot-item {
+    }
+  }
+}
