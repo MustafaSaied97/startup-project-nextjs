@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { ArrowIcon } from '@/assets/icons/components';
+import * as Icon from '@/assets/icons';
+
 import { useLocale } from 'next-intl';
 import { debounceFunc } from '@/utils';
-import { usePathname } from '@/navigation';
 import useCachedState from '@/hooks/useCashedState';
 
 export default function CustomItemsSlider({ gap = '1', children, id = 0 }) {
@@ -13,7 +13,6 @@ export default function CustomItemsSlider({ gap = '1', children, id = 0 }) {
   const customSliderRef = useRef(null);
   const locale = useLocale();
   const isRTL = useMemo(() => locale == 'ar', [locale]);
-  const pathname = usePathname();
 
   const [sliderPosition, setSliderPosition] = useCachedState(`sliderPosition-${id}`, 0);
   const currentScrollPosition = useRef(sliderPosition||0);
@@ -58,26 +57,20 @@ export default function CustomItemsSlider({ gap = '1', children, id = 0 }) {
 
   return (
     <section id='slider-container' className={`group relative  w-full ${isRTL ? 'rtl' : ''}`}>
-      <ul
-        id='slider'
-        // onClick={() => saveHistoryState()}
-        className={`no-scrollbar relative ms-0 flex h-[234px] w-full flex-nowrap overflow-x-auto py-2 md:h-[299px] gap-${gap}`}
-        ref={customSliderRef}
-        onScroll={onContainerScroll}
-      >
+      <ul id='slider' className={`no-scrollbar relative ms-0 flex h-[234px] w-full flex-nowrap overflow-x-auto py-2 md:h-[299px] gap-${gap}`} ref={customSliderRef} onScroll={onContainerScroll}>
         {children}
       </ul>
       {!disablePrevArrow && (
         <button className={`absolute start-0 top-0 z-20 hidden h-full cursor-pointer place-items-center   group-hover:sm:grid`} onClick={() => scroll(isRTL ? 1 : -1)}>
           <i className='rotate-90 rounded-full bg-white p-2 shadow-md rtl:-rotate-90 '>
-            <ArrowIcon height={24} width={24} color='gray' />
+            <Icon.Arrow height={24} width={24} color='gray' />
           </i>
         </button>
       )}
       {!disableNextArrow && (
         <button className={`absolute end-0 top-0 z-20 hidden  h-full cursor-pointer  place-items-center  group-hover:sm:grid`} onClick={() => scroll(isRTL ? -1 : 1)}>
           <i className='-rotate-90 rounded-full  bg-white p-2 shadow-md rtl:rotate-90'>
-            <ArrowIcon height={24} width={24} color='gray' />
+            <Icon.Arrow height={24} width={24} color='gray' />
           </i>
         </button>
       )}

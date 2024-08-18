@@ -21,10 +21,10 @@
     @apply text-xs sm:text-sm lg:text-base;
   }
   .skeleton {
-    @apply animate-pulse bg-gray-400/30 ;
+    @apply animate-pulse bg-gray-400/30;
   }
   .center-element {
-    @apply absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] ;
+    @apply absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%];
   }
 }
 
@@ -154,10 +154,7 @@ body {
   width: 100%;
   min-width: 230px;
   background-color: var(--white);
-}
-
-body {
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 // global classes
@@ -169,10 +166,12 @@ th,
 td,
 th + div {
   text-align: center;
-  // overflow:hidden !important;
-  // &:hover {
-  //   overflow: auto !important;
-  // }
+}
+
+.adaptive-height-section {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
 }
 
 .img-gradient-filter::before {
@@ -191,143 +190,8 @@ th + div {
   word-break: break-word;
 }
 
-#staticModal .modal-inner,
-#customConfirmationDialog .modal-inner {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: slide-up-modal 0.2s ease-in-out;
-  float: left;
-
-  @keyframes slide-up-modal {
-    0% {
-      top: 48%;
-      opacity: 0.5;
-    }
-
-    100% {
-      top: 50%;
-      opacity: 1;
-    }
-  }
-}
-
-#customModal .modal-backdrop,
-#customConfirmationDialog,
-modal-dialog {
-  z-index: 150;
-  position: relative;
-}
-
-// animations
-.modal-enter-active {
-  animation: slide-in 0.3s linear;
-}
-
-.modal-leave-active {
-  animation: slide-out 0.3s reverse;
-}
-
-@keyframes slide-in {
-  0% {
-    transform: translate(-50%, -10%);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translate(-50%, 0);
-    opacity: 1;
-  }
-}
-
-@keyframes slide-out {
-  0% {
-    transform: translate(-50%, 0);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translate(-50%, -10%);
-    opacity: 0;
-  }
-}
-
-// temporary loader
-.section-loader {
-  display: grid;
-  place-items: center;
-  position: fixed;
-  inset: 0 0 0 0;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.4) !important;
-  backdrop-filter: saturate(146%) blur(1px);
-  z-index: 9000 !important;
-}
-
-.section-loader-container {
-  display: grid;
-  place-items: center;
-  position: absolute;
-  inset: 0 0 0 0;
-  height: 100vh;
-  height: 100svh;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.4) !important;
-  backdrop-filter: saturate(146%) blur(1px);
-  z-index: 9000 !important;
-}
-
-.modal-loader {
-  display: grid;
-  place-items: center;
-  height: 300px;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.4) !important;
-  backdrop-filter: saturate(146%) blur(1px);
-}
-
-.lds-dual-ring {
-  display: inline-block;
-  width: 80px;
-  height: 80px;
-}
-
-.lds-dual-ring:after {
-  content: ' ';
-  display: block;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border-radius: 50%;
-  border: 6px solid var(--sec-bg);
-  border-color: var(--sec-bg) transparent var(--sec-bg) transparent;
-  animation: lds-dual-ring 1.2s linear infinite;
-}
-
-@keyframes lds-dual-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 .scroll {
-  // ::-webkit-scrollbar {
-  //   width: 14px;
-  // }
-  // ::-webkit-scrollbar-track {
-  //   -webkit-box-shadow: inset 0 0 6px rgba(112, 112, 112, 0.3);
-  //   border-radius: 10px;
-  //   padding: 5px;
-  // }
-  // ::-webkit-scrollbar-thumb {
-  //   border-radius: 10px;
-  //   // -webkit-box-shadow: 0 0 6px rgb(0, 0, 0);
-  //   background: #88888836;
-  // }
   ::-webkit-scrollbar {
     width: 0.7em;
   }
@@ -347,6 +211,7 @@ modal-dialog {
 
   // font-size: clamp(0.4rem, 90%, 1rem);
 }
+
 .products-list-container {
   list-style: none;
   display: grid;
@@ -363,29 +228,13 @@ modal-dialog {
   @media (max-width: 280px) {
     grid-template-columns: repeat(auto-fill, minmax(190px, 150px));
   }
-  // @media (max-width: 900px) {
-  //   grid-row-gap: 1rem;
-  //   grid-column-gap: 0.9rem;
-  // }
-  // @media (max-width: 780px) {
-  //   grid-row-gap: 1rem;
-  //   padding-left: 0;
-  //   padding-right: 0;
-  //   grid-template-columns: 1fr 1fr;
-  // }
-  // @media (max-width: 680px) {
-  //   grid-template-columns: 1fr;
-  // }
 }
 
-@media (max-width: 640px) {//sm
-  /*sm*/
+@media (max-width: 640px) {
+
   #reponsive-table table {
     border-collapse: separate;
     border-spacing: 0 0.6rem;
-    // border: 0;
-    // margin: 0;
-    // padding: 0;
     width: 100%;
   }
   #reponsive-table thead {
@@ -447,7 +296,7 @@ modal-dialog {
 }
 
 .tooltip .tooltiptext::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 100%;
   left: 50%;
@@ -461,5 +310,3 @@ modal-dialog {
   visibility: visible;
   opacity: 1;
 }
-
-

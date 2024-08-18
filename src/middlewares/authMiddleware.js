@@ -3,7 +3,6 @@ import { ROUTES_PATH, ROUTES_ROLE, isTokenValid } from '@/utils';
 import { cookies } from 'next/headers';
 
 const websiteAuthPaths = [ROUTES_PATH.website.login, ROUTES_PATH.website.signUp, ROUTES_PATH.website.forgetPassword, ROUTES_PATH.website.resetPassword, ROUTES_PATH.website.verification];
-const panelAuthPaths = [ROUTES_PATH.panel.login];
 
 export default function authMiddleware(request, response) {
   let { pathname } = request.nextUrl;
@@ -14,12 +13,6 @@ export default function authMiddleware(request, response) {
   const { token, role, isMemberInWebsite } = JSON.parse(request.cookies.get('authData')?.value || '{}');
 
   const isAuthenticated = role && token;
-  // const isAuthenticated = role && token && isTokenValid(token);
-  // if (!isTokenValid(token)) {
-  //   //delete token and role
-  //   console.log('not vaild token so all authData in cookies was deleted');
-  //   response.cookies.delete({ name: 'authData' });
-  // }
 
   const matchedRoute = Object.keys(ROUTES_ROLE).find((path) => {
     const regexPattern = path.replace(/:\w+/g, '[^/]+');
@@ -49,10 +42,6 @@ export default function authMiddleware(request, response) {
     return NextResponse.redirect(new URL(notMatchedRolePath, request.url));
   }
 
-  if (panelAuthPaths.includes(matchedRoute) && isAuthenticated) {
-    const notMatchedRolePath = `/${lang}${ROUTES_PATH.panel.home}`;
-    return NextResponse.redirect(new URL(notMatchedRolePath, request.url));
-  }
 
   return response;
 }

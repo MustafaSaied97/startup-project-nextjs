@@ -12,8 +12,6 @@ export default function useQuery(path = '', isScrollToTop = true) {
     router.push(`${path}?${queryString}`, { scroll: isScrollToTop });
   };
   return {
-    addToUrl,
-    // ...queryParams,
     get: (key) => queryParams.get(key),
     delete: (key) => queryParams.delete(key),
     set: (key, val) => queryParams.set(key, val),
@@ -24,5 +22,6 @@ export default function useQuery(path = '', isScrollToTop = true) {
       queryParams.keys().forEach((key) => {
         queryParams.delete(key);
       }),
+    addToUrl,
   };
 }

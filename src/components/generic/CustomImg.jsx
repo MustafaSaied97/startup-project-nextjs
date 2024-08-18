@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import fallbackImage from '@/assets/icons/failed-img.jpg';
+import fallbackImage from '@/assets/images/failed-img.jpg';
 const imageLoader = ({ src, width=100, quality=75 }) => `https://example.com/${src}?w=${width}&q=${quality}`;
 export default function CustomImg({ src, fallbackSrc = fallbackImage, ...rest }) {
   const [imgSrc, setImgSrc] = useState(src || fallbackSrc);

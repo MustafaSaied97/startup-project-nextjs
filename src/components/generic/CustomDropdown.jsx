@@ -12,13 +12,7 @@ export default function CustomDropdown({ Button,List }) {
     setIsOpen(false);
   };
   const handleBlur = (e) => {
-    // if (container.current.contains(e.target)) return;
-    // console.log('e.target', e.target);
-    //   console.log('e.relatedTarget', e.relatedTarget);
-    //   console.log('container.current', container.current);
-    //   console.log('container.current.contains(e.target)', container.current.contains(e.target));
     setIsOpen(false);
-    // console.log('on');
   };
   
   return (

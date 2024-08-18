@@ -1,7 +1,7 @@
 'use client';
 import { useTranslations } from 'next-intl';
 import React, { useState, useRef } from 'react';
-import noResultsFoundImg from '@/assets/icons/no-results-found.png';
+import noResultsFoundImg from '@/assets/images/no-results-found.png';
 export default function NoResultsFound({ message, imgSrc }) {
   const t = useTranslations();
   return (

@@ -1,5 +1,5 @@
-const isString = (x) => Object.prototype.toString.call(x) === '[object String]';
-const isTokenValid = (token) => {
+export const isString = (x) => Object.prototype.toString.call(x) === '[object String]';
+export const isTokenValid = (token) => {
   if (!token || typeof token !== 'string') {
     return false;
   }
@@ -10,12 +10,12 @@ const isTokenValid = (token) => {
     return false;
   }
 };
-const youtubeParser = (url) => {
+export function youtubeParser(url) {
   var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
   var match = url.match(regExp);
   return match && match[7].length == 11 ? match[7] : false;
-};
-const objectToQueryString = (obj, { isEncoded = true } = {}) => {
+}
+export function objectToQueryString(obj, { isEncoded = true } = {}) {
   // Extract keys from the object
   const keys = Object.keys(obj);
 
@@ -23,15 +23,17 @@ const objectToQueryString = (obj, { isEncoded = true } = {}) => {
   const keyValuePairs = isEncoded ? keys.map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`) : keys.map((key) => `${key}=${obj[key]}`);
   // Join the key-value pairs with '&' to form the query string
   return keyValuePairs.length ? `?${keyValuePairs.join('&')}` : '';
-};
+}
 // text trimmer
-const trimText = (txt, limit) => (txt ? `${txt.split('').length > limit ? txt.split('').slice(0, limit).join('') + '...' : txt}` : '');
+export function trimText(txt, limit) {
+  return txt ? `${txt.split('').length > limit ? txt.split('').slice(0, limit).join('') + '...' : txt}` : '';
+}
 
-const lowerString = (txt) => (typeof txt === 'string' ? txt.toLowerCase() : typeof txt === 'number' ? txt : '');
+export const lowerString = (txt) => (typeof txt === 'string' ? txt.toLowerCase() : typeof txt === 'number' ? txt : '');
 
-const upperString = (txt) => (typeof txt === 'string' ? txt.toUpperCase() : typeof txt === 'number' ? txt : '');
+export const upperString = (txt) => (typeof txt === 'string' ? txt.toUpperCase() : typeof txt === 'number' ? txt : '');
 
-const generateRandomId = () => {
+export const generateRandomId = () => {
   const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   let id = '';
 
@@ -42,80 +44,12 @@ const generateRandomId = () => {
 
   return id;
 };
-function getRandomNumber({ min = 1, max = 1, isRounded = false }) {
+
+export function getRandomNumber({ min = 1, max = 1, isRounded = false }) {
   return isRounded ? Math.floor(Math.random() * (max - min + 1)) + min : Math.random() * (max - min + 1);
 }
 
-const storageManager = {
-  localStorageAppKey: 'Market BFF',
-  localStorageBasicData: {
-    // theme: 'light',
-  },
-  getAll() {
-    if (typeof localStorage !== 'undefined') {
-      try {
-        return JSON.parse(localStorage.getItem(this.localStorageAppKey));
-      } catch {
-        this.reset();
-        return JSON.parse(localStorage.getItem(this.localStorageAppKey));
-      }
-    }
-    return null;
-  },
-  currentLocalStorageData: null, // Initialize to null initially
-
-  // Initialize currentLocalStorageData after defining all methods
-  init() {
-    this.currentLocalStorageData = this.getAll();
-  },
-
-  set(key, value) {
-    if (!key) return;
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem(this.localStorageAppKey, JSON.stringify({ ...this.currentLocalStorageData, [key]: value }));
-      window.dispatchEvent(new Event('storage'));
-    }
-    return;
-  },
-  get(key) {
-    if (typeof localStorage !== 'undefined' && this.currentLocalStorageData) {
-      if (key in this.currentLocalStorageData) {
-        return this.currentLocalStorageData[key];
-      }
-    }
-    return null;
-  },
-  delete(key) {
-    if (typeof localStorage !== 'undefined' && this.currentLocalStorageData && key in this.currentLocalStorageData) {
-      delete this.currentLocalStorageData[key];
-      localStorage.setItem(this.localStorageAppKey, JSON.stringify({ ...this.currentLocalStorageData }));
-    }
-  },
-  reset() {
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem(this.localStorageAppKey, JSON.stringify(this.localStorageBasicData));
-      window.dispatchEvent(new Event('storage'));
-    }
-  },
-  listener(callBack) {
-    if (typeof callBack !== 'function') return;
-    if (typeof localStorage !== 'undefined') {
-      window.addEventListener('storage', () => {
-        return callBack(storageManager.getAll());
-      });
-    }
-  },
-  clear() {
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem(this.localStorageAppKey, JSON.stringify({}));
-      window.dispatchEvent(new Event('storage'));
-    }
-  },
-};
-// Initialize currentLocalStorageData
-storageManager.init();
-
-const formatNumber = (num, precision = 2) => {
+export function formatNumber(num, precision = 2) {
   if (!num) return '';
   num = typeof num === 'string' ? Number(num) : num;
   const map = [
@@ -135,9 +69,9 @@ const formatNumber = (num, precision = 2) => {
   }
   const formattedNum = num.toString().replace(/\.?0+$/, '');
   return formattedNum;
-};
+}
 
-const arabizeNumbers = (str) => {
+export function arabizeNumbers(str) {
   const currentLang = storageManager.get('get') || 'ar';
   if (lowerString(currentLang) !== 'ar') {
     return str;
@@ -149,12 +83,12 @@ const arabizeNumbers = (str) => {
   return str.replace(/[0-9]/g, function (w) {
     return id[+w];
   });
-};
-const removeDuplicatedObjectsFromAnArray = ({ array, keyToCheck = 'id' }) => {
+}
+export function removeDuplicatedObjectsFromAnArray({ array, keyToCheck = 'id' }) {
   return Array.from(new Set(array.map((x) => x[keyToCheck]))).map((w) => array.find((el) => el[keyToCheck] === w));
-};
+}
 
-const getCurrentLocation = () => {
+export function getCurrentLocation() {
   return new Promise((resolve, reject) => {
     let isSupported = 'navigator' in window && 'geolocation' in navigator;
 
@@ -183,28 +117,25 @@ const getCurrentLocation = () => {
       reject(new Error('Geolocation is not supported in this browser.'));
     }
   });
-};
-const parseQueryString = (queryString) => {
+}
+export function parseQueryString(queryString) {
   const params = {};
   const searchParams = new URLSearchParams(queryString);
   for (const [key, value] of searchParams.entries()) {
     params[key] = value;
   }
   return params;
-};
+}
 
-// debounceFunc debounce
 let timeoutId;
-const debounceFunc = (func, delay) => {
-  return function (...args) {
+export function debounceFunc(func, delay) {
+  return function () {
     clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      func.apply(this, args);
-    }, Number(delay));
+    timeoutId = setTimeout(func, Number(delay));
   };
-};
+}
 
-const scrollToErrorBox = () => {
+export function scrollToErrorBox() {
   debounceFunc(() => {
     //make latency with debounce to make sure that class that added to the dom so you cane the elemt that has this class
     // make sure you have the class '.scroll_to_err' in your error element
@@ -216,37 +147,16 @@ const scrollToErrorBox = () => {
       return;
     }
   }, 500)();
-};
+}
 
-const changeColorTheme = (theme = 'light') => {
+export function changeColorTheme(theme = 'light') {
   //update dom
   let html = document.documentElement;
   html.classList.remove(theme == 'light' ? 'dark' : 'light');
   html.classList.add(theme);
   //update LocalStorage
   storageManager.set('theme', theme);
-};
-
-export {
-  trimText,
-  formatNumber,
-  storageManager,
-  scrollToErrorBox,
-  lowerString,
-  arabizeNumbers,
-  upperString,
-  isString,
-  isTokenValid,
-  generateRandomId,
-  getRandomNumber,
-  youtubeParser,
-  removeDuplicatedObjectsFromAnArray,
-  getCurrentLocation,
-  debounceFunc,
-  parseQueryString,
-  changeColorTheme,
-  objectToQueryString,
-};
+}
 
 export function findItemById(Arr, targetId) {
   if (!Arr || !targetId) return;
@@ -260,7 +170,7 @@ export function findItemById(Arr, targetId) {
     }
   }
 }
-export function getInitials(fullName='') {
+export function getInitials(fullName = '') {
   const nameArray = fullName.trim().split(' '); // Split the full name by spaces
 
   if (nameArray.length < 2) {
@@ -366,9 +276,9 @@ export function isFileSystemObject(obj) {
   return false;
 }
 export function isBase64(str) {
-    if (typeof str !== 'string') {
-      return false;
-    }
+  if (typeof str !== 'string') {
+    return false;
+  }
   const base64Pattern = /^data:([a-zA-Z0-9-]+\/[a-zA-Z0-9-+.]+)?;base64,(?:[A-Za-z0-9+/]|[A-Za-z0-9+/][-_])*={0,2}$/;
   return base64Pattern.test(str);
 }

@@ -4,6 +4,7 @@ export const ROLES = {
   reseller: 'reseller',
 };
 
+
 export const ROUTES = Object.freeze({
   website: {
     home: {
@@ -30,10 +31,6 @@ export const ROUTES = Object.freeze({
       path: `/verification`,
       role: null,
     },
-    createStore: {
-      path: `/create-store`,
-      // role: ['reseller'],
-    },
     aboutUs: {
       path: `/about-us`,
       role: null,
@@ -50,120 +47,7 @@ export const ROUTES = Object.freeze({
       path: `/terms-of-service`,
       role: null,
     },
-    cart: {
-      path: '/cart',
-      role: ['user', 'reseller'],
-    },
-    wishlist: {
-      path: '/wishlist',
-      role: ['user', 'reseller'],
-    },
-    makeOrder: {
-      path: '/make-order',
-      role: ['user', 'reseller'],
-    },
-    orderHistory: {
-      path: '/order-history',
-      role: ['user', 'reseller'],
-    },
-    orderDetails: {
-      path: '/order-history/:id',
-      role: ['user', 'reseller'],
-    },
-    products: {
-      path: `/products/:id`,
-      // role: ['user'],
-    },
-    profile: {
-      path: '/profile',
-      role: ['user', 'reseller'],
-    },
-    referrals: {
-      path: '/referrals',
-      role: ['user', 'reseller'],
-    },
-    security: {
-      path: '/security',
-      role: ['user', 'reseller'],
-    },
   },
-  panel: {
-    home: {
-      path: '/panel',
-      role: ['admin', 'reseller'],
-    },
-    // dashboard: {
-    //   path: '/panel/dashboard',
-    //   // role: ['admin', 'reseller'],
-    // },
-    login: {
-      path: `/panel/login`,
-      role: null,
-    },
-    products: {
-      path: `/panel/products`,
-      role: ['admin', 'reseller'],
-    },
-    categories: {
-      path: `/panel/categories`,
-      role: ['admin'],
-    },
-    subCategories: {
-      path: `/panel/categories/:id`,
-      role: ['admin'],
-    },
-    admins: {
-      path: `/panel/admins`,
-      role: ['admin'],
-    },
-    resellers: {
-      path: `/panel/resellers`,
-      role: ['admin'],
-    },
-    users: {
-      path: `/panel/users`,
-      role: ['admin', 'reseller'],
-    },
-
-    offers: {
-      path: `/panel/offers`,
-      role: ['admin', 'reseller'],
-    },
-    store: {
-      path: `/panel/store`,
-      role: ['admin'],
-    },
-    myStore: {
-      path: `/panel/my-store`,
-      role: ['reseller'],
-    },
-
-    orders: {
-      path: `/panel/orders`,
-      role: ['admin', 'reseller'],
-    },
-    withdrawal: {
-      path: `/panel/withdrawal`,
-      role: ['admin', 'reseller'],
-    },
-    feedback: {
-      path: `/panel/feedback`,
-      role: ['admin', 'reseller'],
-    },
-    manageWebsite: {
-      path: `/panel/manage-website`,
-      role: ['admin'],
-    },
-    customerSupport: {
-      path: `/panel/customer-support`,
-      role: ['admin', 'reseller'],
-    },
-    info: {
-      path: `/panel/info`,
-      role: ['admin', 'reseller'],
-    },
-  },
-  //---- ERROR PAGES ----
   errors: {
     _404: {
       path: `/404`,
@@ -178,19 +62,6 @@ export const ROUTES = Object.freeze({
       role: null,
     },
   },
-  //---- success PAGES ----
-  success: {
-    payment: {
-      path: '/success',
-      role: null,
-    },
-  },
-  payment: {
-    status: {
-      path: '/status',
-      role: null,
-    },
-  },
 });
 
 export const ROUTES_PATH = {};
@@ -201,6 +72,7 @@ for (const routeKey in ROUTES) {
     ROUTES_PATH[routeKey][routeSectionKey] = removeDynamicPart(routeSection[routeSectionKey].path);
   }
 }
+
 export const ROUTES_ROLE = {};
 for (const routeKey in ROUTES) {
   const routeSection = ROUTES[routeKey];
@@ -213,9 +85,7 @@ for (const routeKey in ROUTES) {
 function removeDynamicPart(url) {
   // Define a regular expression pattern to match anything after "/:"
   const dynamicRoutePattern = /\/:.*/;
-
   // Replace anything after "/:" with an empty string
   const replacedUrl = url.replace(dynamicRoutePattern, '');
-
   return replacedUrl;
 }
