@@ -10,3 +10,4 @@ export { default as CustomGroup } from './CustomGroup.jsx';
 export { default as CustomImg } from './CustomImg.jsx';
 export { default as NoResultsFound } from './NoResultsFound.jsx';
 export { default as LogoutModal } from './LogoutModal.jsx';
+export { default as GenericModal } from './GenericModal.jsx';
