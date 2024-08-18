@@ -1,6 +1,5 @@
 'use client';
-import * as Icon from '@/assets/icons';
-
+import * as Icons from '@/assets/icons';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { VALIDATIONS, notify } from '@/utils';
@@ -78,7 +77,7 @@ export default function ResetPasswordPage() {
                 onClick={() => setShowPassword(!showPassword)}
                 className='absolute inset-y-0 end-3 flex cursor-pointer  items-center pe-3.5 '
               >
-                {showPassword ? <Icon.Eye /> : <Icon.EyeDisable />}
+                {showPassword ? <Icons.Eye /> : <Icons.EyeDisable />}
               </button>
             ),
           }}
@@ -99,7 +98,7 @@ export default function ResetPasswordPage() {
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 className='absolute inset-y-0 end-3 flex cursor-pointer  items-center pe-3.5 '
               >
-                {showConfirmPassword ? <EyeIcon /> : <EyeDisableIcon />}
+                {showConfirmPassword ? <Icons.Eye /> : <Icons.EyeDisable />}
               </button>
             ),
           }}

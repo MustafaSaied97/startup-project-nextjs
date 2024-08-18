@@ -57,18 +57,16 @@
 :root {
   --main-header-height: 90px;
   --main-footer-height: 371px;
-  --main-content-height: calc(100vh - var(--main-footer-height)); //in case of header not fixed use this calc(100vh -var(--main-header-height) - var(--main-footer-height));
-
-  --panel-header-height: 48px;
-  --panel-footer-height: 50px;
-  --panel-sidebar-height: calc(100vh - var(--panel-header-height));
-  --panel-content-height: calc(100vh - var(--panel-footer-height) - var(--panel-header-height));
+  --main-content-height: calc(
+    100vh - var(--main-footer-height)
+  ); //in case of header not fixed use this calc(100vh -var(--main-header-height) - var(--main-footer-height));
 
   --elevated-background: 232, 233, 235;
   --primary-clr: #0963ff2e;
   --primary-lighter-clr: #0758e7;
   --secondary-clr: #1d1d1d;
-
+  
+  overflow-y: auto;
   // scroll-behavior: smooth;
 }
 
@@ -134,6 +132,7 @@
 * {
   padding: 0;
   margin: 0;
+  -webkit-text-size-adjust: 100%;
   @apply transition-colors duration-200; //for smooth transition for toggling theme
 }
 
@@ -141,12 +140,6 @@
 *:before,
 *:after {
   box-sizing: border-box;
-}
-
-html {
-  height: 100%;
-  width: 100%;
-  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -182,14 +175,18 @@ th + div {
   width: 100%;
   z-index: 10;
   height: 100%;
-  background: linear-gradient(90deg, rgba(19, 19, 19, 0.6) 13.04%, rgba(22, 19, 19, 0.6) 13.05%, rgba(241, 18, 55, 0.6) 100%); // filter: blur(10px); /* Adjust blur radius as needed */
+  background: linear-gradient(
+    90deg,
+    rgba(19, 19, 19, 0.6) 13.04%,
+    rgba(22, 19, 19, 0.6) 13.05%,
+    rgba(241, 18, 55, 0.6) 100%
+  ); // filter: blur(10px); /* Adjust blur radius as needed */
 }
 
 .multi-lines-text {
   white-space: pre-line;
   word-break: break-word;
 }
-
 
 .scroll {
   ::-webkit-scrollbar {
@@ -231,7 +228,6 @@ th + div {
 }
 
 @media (max-width: 640px) {
-
   #reponsive-table table {
     border-collapse: separate;
     border-spacing: 0 0.6rem;

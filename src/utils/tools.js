@@ -1,3 +1,5 @@
+import storageManager from './storageManager';
+
 export const isString = (x) => Object.prototype.toString.call(x) === '[object String]';
 export const isTokenValid = (token) => {
   if (!token || typeof token !== 'string') {
@@ -20,7 +22,9 @@ export function objectToQueryString(obj, { isEncoded = true } = {}) {
   const keys = Object.keys(obj);
 
   // Map each key-value pair to a string in the format 'key=value'
-  const keyValuePairs = isEncoded ? keys.map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`) : keys.map((key) => `${key}=${obj[key]}`);
+  const keyValuePairs = isEncoded
+    ? keys.map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`)
+    : keys.map((key) => `${key}=${obj[key]}`);
   // Join the key-value pairs with '&' to form the query string
   return keyValuePairs.length ? `?${keyValuePairs.join('&')}` : '';
 }

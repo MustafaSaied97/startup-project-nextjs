@@ -1,12 +1,12 @@
 'use client';
 
-import { store } from '@/lib/store';
+import { store } from '@/state-mangement/store';
 import { useEffect, useLayoutEffect } from 'react';
 import { Provider } from 'react-redux';
 
 import { useDispatch } from 'react-redux';
-import { themeInit } from '@/lib/features/themeSlice';
-import { initAuth } from '@/lib/features/authSlice';
+import { themeInit } from '@/state-mangement/features/themeSlice';
+import { initAuth } from '@/state-mangement/features/authSlice';
 
 function StoreInitiatializton({ children }) {
   //initialize all store state the came from localstorage and cookies {client side}

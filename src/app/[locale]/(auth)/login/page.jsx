@@ -1,5 +1,5 @@
 'use client';
-import * as Icon from '@/assets/icons';
+import * as Icons from '@/assets/icons';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { VALIDATIONS, notify } from '@/utils';
@@ -8,7 +8,7 @@ import { ROUTES_PATH } from '@/utils/routes';
 import { useTranslations } from 'next-intl';
 import { apis } from '@/services/apis';
 import { useDispatch, useSelector } from 'react-redux';
-import { storeAuth } from '@/lib/features/authSlice';
+import { storeAuth } from '@/state-mangement/features/authSlice';
 import { TextInput } from '@/components/UI';
 
 export default function LoginPage() {
@@ -84,7 +84,7 @@ export default function LoginPage() {
                 onClick={() => setShowPassword(!showPassword)}
                 className='absolute inset-y-0 end-3 flex cursor-pointer  items-center pe-3.5 '
               >
-                {showPassword ? <Icon.Eye /> : <Icon.EyeDisable />}
+                {showPassword ? <Icons.Eye /> : <Icons.EyeDisable />}
               </button>
             ),
           }}
@@ -113,29 +113,3 @@ export default function LoginPage() {
     </section>
   );
 }
-// {
-//   /* email */
-// }
-// <div>
-//   <label className='text-base font-medium ' htmlFor='email'>
-//     {t('general.email')}
-//   </label>
-//   <div className='relative mt-2'>
-//     <input
-//       {...register('email', { ...VALIDATIONS.email })}
-//       type='text'
-//       id='email'
-//       name='email'
-//       className={`block w-full rounded-[5px]  border ${errors.email ? 'border-[--main-clr]  bg-[#f11237]/5 ' : 'border-[#E6E6E6]  bg-transparent '}   p-2.5  pe-10 text-[0.9rem]  outline-none focus:border-blue-500  sm:text-[.8rem]`}
-//       placeholder={t('general.email')}
-//       autoComplete={'true'}
-//     />
-//   </div>
-//   {/* for errors */}
-//   {errors.email && (
-//     <p className=' flex items-center gap-1 text-[clamp(.5rem,_100%,_0.875rem)] font-normal text-[--canceled-clr]'>
-//       <Icon.Danger />
-//       {errors.email.message}
-//     </p>
-//   )}
-// </div>;

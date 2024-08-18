@@ -2,7 +2,7 @@
 import React from 'react';
 import { MainHeader, MainFooter } from '@/components';
 
-export default function DefaultWebsiteLayout({ children }) {
+export default function DefaultPagesLayout({ children }) {
   return (
     <section className='bg-[--pr-bg] text-[--pr-text]'>
       <MainHeader />

@@ -1,5 +1,5 @@
 'use client';
-import * as Icon from '@/assets/icons';
+import * as Icons from '@/assets/icons';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { VALIDATIONS, notify } from '@/utils';
@@ -157,7 +157,7 @@ export default function SignUpPage() {
           {/* for errors */}
           {errors.country && (
             <p className=' flex items-center gap-1 text-[clamp(.5rem,_100%,_0.875rem)] font-normal text-[--canceled-clr]'>
-              <Icon.Danger />
+              <Icons.Danger />
               {errors.country.message}
             </p>
           )}
@@ -178,7 +178,7 @@ export default function SignUpPage() {
                 onClick={() => setShowPassword(!showPassword)}
                 className='absolute inset-y-0 end-3 flex cursor-pointer  items-center pe-3.5 '
               >
-                {showPassword ? <Icon.Eye /> : <Icon.EyeDisable />}
+                {showPassword ? <Icons.Eye /> : <Icons.EyeDisable />}
               </button>
             ),
           }}
@@ -199,7 +199,7 @@ export default function SignUpPage() {
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 className='absolute inset-y-0 end-3 flex cursor-pointer  items-center pe-3.5 '
               >
-                {showConfirmPassword ? <Icon.Eye /> : <Icon.EyeDisable />}
+                {showConfirmPassword ? <Icons.Eye /> : <Icons.EyeDisable />}
               </button>
             ),
           }}

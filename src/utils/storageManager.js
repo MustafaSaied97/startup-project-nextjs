@@ -15,9 +15,8 @@ const storageManager = {
     return null;
   },
 
-  currentLocalStorageData: null, // Initialize to null initially
+  currentLocalStorageData: null,
 
-  // Initialize currentLocalStorageData after defining all methods
   init() {
     this.currentLocalStorageData = this.getAll();
   },

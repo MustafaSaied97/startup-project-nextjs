@@ -1,5 +1,5 @@
 'use client';
-import * as Icon from '@/assets/icons';
+import * as Icons from '@/assets/icons';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import React, { useState, useMemo, useEffect } from 'react';
@@ -8,7 +8,7 @@ import { useRouter, usePathname } from '@/navigation';
 import { ROUTES_PATH } from '@/utils/routes';
 import { apis } from '@/services/apis';
 import { useDispatch } from 'react-redux';
-import { removeAuth } from '@/lib/features/authSlice';
+import { removeAuth } from '@/state-mangement/features/authSlice';
 export default function Logout() {
   const t = useTranslations();
   const router = useRouter();
@@ -44,7 +44,7 @@ export default function Logout() {
             {/* modal header */}
             <div className='relative z-10 -mb-4 flex items-start justify-end rounded-t    pt-2 '>
               <button className=' h-6 w-6 rounded-md  text-center  text-white    hover:bg-gray-200 ' onClick={() => setOpenModal(false)}>
-                <Icon.Close />
+                <Icons.Close />
               </button>
             </div>
             {/* modal body */}

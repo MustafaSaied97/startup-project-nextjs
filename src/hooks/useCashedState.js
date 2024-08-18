@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateCachedState } from '@/lib/features/cachedSlice'; // Import your Redux slice action
+import { updateCachedState } from '@/state-mangement/features/cachedSlice'; // Import your Redux slice action
 
 export default function useCachedState(key, initialValue) {
   const dispatch = useDispatch();

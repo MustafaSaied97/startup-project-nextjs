@@ -1,6 +1,6 @@
 import React from 'react';
 import { WishlistBtn } from '@/components';
-import * as Icon from '@/assets/icons';
+import * as Icons from '@/assets/icons';
 
 const Skeleton = {
   ProductItem: () => {
@@ -193,7 +193,7 @@ const Skeleton = {
             <tr key={i} className='border-b last:border-0 sm:border-0' scope='row'>
               <td className=''>
                 <button disabled className='flex h-12 w-full  items-center justify-end px-5  sm:h-full sm:p-0'>
-                  <Icon.DeleteCart />
+                  <Icons.DeleteCart />
                 </button>
               </td>
               <td className='px-6 py-4 text-center'>

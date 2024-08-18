@@ -24,4 +24,4 @@ export { default as DarkMode } from './DarkMode.jsx';
 
 
 
-// import * as Icon from '@/assets/icons';
+// import * as Icons from '@/assets/icons';

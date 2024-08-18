@@ -1,6 +1,6 @@
 
 'use client';
-import * as Icon from '@/assets/icons';
+import * as Icons from '@/assets/icons';
 
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from '@/navigation';
@@ -25,12 +25,12 @@ export default function LocaleSwitcher() {
   return (
     <div onBlur={() => setIsOpen(false)} className='relative w-fit'>
       <button onClick={() => setIsOpen(!isOpen)} className='inline-flex w-full  items-center gap-1 rounded-lg  py-2.5 text-center text-lg text-[--pr-text]    lg:px-5 '>
-        <Icon.Language />
+        <Icons.Language />
         <span className='hidden lg:inline'>{locale === 'en' ? 'ENG' : 'AR'}</span>
         {/* <svg className='ms-1 aspect-square w-3 text-gray-300' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 10 6'>
           <path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='m1 1 4 4 4-4' />
         </svg> */}
-        <Icon.Arrow />
+        <Icons.Arrow />
       </button>
       {isOpen && (
         <ul className='dark:bg-gray-700py-2 absolute z-10  w-44 divide-y divide-gray-100 rounded-lg bg-white text-sm text-black shadow '>

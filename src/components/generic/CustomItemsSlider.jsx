@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import * as Icon from '@/assets/icons';
+import * as Icons from '@/assets/icons';
 
 import { useLocale } from 'next-intl';
 import { debounceFunc } from '@/utils';
@@ -63,14 +63,14 @@ export default function CustomItemsSlider({ gap = '1', children, id = 0 }) {
       {!disablePrevArrow && (
         <button className={`absolute start-0 top-0 z-20 hidden h-full cursor-pointer place-items-center   group-hover:sm:grid`} onClick={() => scroll(isRTL ? 1 : -1)}>
           <i className='rotate-90 rounded-full bg-white p-2 shadow-md rtl:-rotate-90 '>
-            <Icon.Arrow height={24} width={24} color='gray' />
+            <Icons.Arrow height={24} width={24} color='gray' />
           </i>
         </button>
       )}
       {!disableNextArrow && (
         <button className={`absolute end-0 top-0 z-20 hidden  h-full cursor-pointer  place-items-center  group-hover:sm:grid`} onClick={() => scroll(isRTL ? -1 : 1)}>
           <i className='-rotate-90 rounded-full  bg-white p-2 shadow-md rtl:rotate-90'>
-            <Icon.Arrow height={24} width={24} color='gray' />
+            <Icons.Arrow height={24} width={24} color='gray' />
           </i>
         </button>
       )}

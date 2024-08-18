@@ -1,5 +1,4 @@
 'use client';
-import * as Icon from '@/assets/icons';
 import { useForm } from 'react-hook-form';
 import { VALIDATIONS, notify } from '@/utils';
 import { useTranslations } from 'next-intl';
@@ -29,7 +28,7 @@ export default function ForgetPasswordPage() {
     setIsProcessing(true);
     try {
       const res = await apis.forgotPassword(payloadData);
-      notify(t('general.verfication_msg'), { type: 'success' });
+      notify('general.verfication_msg', { type: 'success' });
       // reset();
     } catch (err) {
       notify(err?.message || err?.data?.message, { type: 'error' });
@@ -40,8 +39,8 @@ export default function ForgetPasswordPage() {
   return (
     <section className='flex w-full  items-center  justify-center  '>
       <form onSubmit={handleSubmit(onSubmit)} action='' className='mt-8 flex w-full flex-col gap-3'>
-        <h4 className=' text-2xl font-semibold'>{t('general.forget_password_title')}</h4>
-        <p className='mb-7 text-base font-normal capitalize leading-none text-slate-500'>{t('general.forget_password_hint')}</p>
+        <h4 className=' text-2xl font-semibold'>{'general.forget_password_title'}</h4>
+        <p className='mb-7 text-base font-normal capitalize leading-none text-slate-500'>{'general.forget_password_hint'}</p>
         <TextInput
           control={control}
           label={'email'}

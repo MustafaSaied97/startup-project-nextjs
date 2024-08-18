@@ -1,13 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ROUTES_PATH, ROUTES_ROLE, isTokenValid } from '@/utils';
-import { cookies } from 'next/headers';
-
 const websiteAuthPaths = [ROUTES_PATH.website.login, ROUTES_PATH.website.signUp, ROUTES_PATH.website.forgetPassword, ROUTES_PATH.website.resetPassword, ROUTES_PATH.website.verification];
 
 export default function authMiddleware(request, response) {
   let { pathname } = request.nextUrl;
   pathname = removeLanguagePrefix(pathname);
-  // response.cookies.set({ name: 'x-pathname', value: pathname });
 
   const lang = request.cookies.get('NEXT_LOCALE')?.value || 'en';
   const { token, role, isMemberInWebsite } = JSON.parse(request.cookies.get('authData')?.value || '{}');

@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { setCookie } from 'cookies-next';
 import { useDispatch } from 'react-redux';
-import { setLayoutData } from '@/lib/features/layoutSlice';
+import { setLayoutData } from '@/state-mangement/features/layoutSlice';
 let isSet = false;
 export default function WebsiteLayoutProvider({ children, layoutData = {} }) {
   !isSet && setCookie('layoutData', JSON.stringify(layoutData));

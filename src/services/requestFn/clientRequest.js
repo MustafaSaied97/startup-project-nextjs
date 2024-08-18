@@ -97,5 +97,5 @@ const handleNotAuthorized = () => {
   //reset data of user
   deleteCookies({ name: 'authData' });
   //redirect to login or 401 page
-  location.pathname.startsWith('/panel') ? window.location.replace(`${window.origin}/panel/login`) : window.location.replace(`${window.origin}/login`);
+  window.location.replace(`${window.origin}/login`);
 };

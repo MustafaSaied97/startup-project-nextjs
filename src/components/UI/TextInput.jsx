@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import * as Icon from '@/assets/icons';
+import * as Icons from '@/assets/icons';
 import { useController } from 'react-hook-form';
 
 export default function TextInput({ control, label, name, rules, inputIcon, ...inputProps }) {
@@ -27,7 +27,7 @@ export default function TextInput({ control, label, name, rules, inputIcon, ...i
       {/* for errors */}
       {errors?.[name] && (
         <p className=' flex items-center gap-1 text-[clamp(.5rem,_100%,_0.875rem)] font-normal text-[--canceled-clr]'>
-          <Icon.Danger />
+          <Icons.Danger />
           {errors?.[name].message}
         </p>
       )}

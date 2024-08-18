@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-import { debounceFunc, storageManager } from '@/utils';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from '@/navigation';
 
