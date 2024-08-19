@@ -52,4 +52,12 @@ Modal.Footer = ({ children, className = 'flex h-[40px] items-center justify-betw
   );
 };
 
+Modal.useModal = (initialVal = false) => {
+  const [isModalOpen, setIsModalOpen] = useState(initialVal);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+  const toggleModal = () => setIsModalOpen((prev) => !prev);
+  return { isModalOpen, openModal, closeModal, toggleModal };
+};
+
 export default Modal;
