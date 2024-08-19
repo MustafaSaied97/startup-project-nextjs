@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import * as Icons from '@/assets/icons';
 
-const Modal = ({ isOpen, onClose, maxWidth = 500, backgroundColor = 'var(--tr-bg)', children, ...modalProps }) => {
+const Modal = ({ children, isOpen, onClose, style = {}, ...modalProps }) => {
   if (!isOpen) return null;
 
   return (
@@ -12,7 +12,10 @@ const Modal = ({ isOpen, onClose, maxWidth = 500, backgroundColor = 'var(--tr-bg
       {/* modal structure */}
       <div
         className='relative z-10 flex max-h-[70vh] w-[90%]  flex-col gap-y-2 overflow-y-auto rounded-lg border-0  px-6 py-3 shadow-lg sm:w-[70%]'
-        style={{ maxWidth, backgroundColor }}
+        style={{
+          maxWidth: 500,
+          backgroundColor: 'var(--tr-bg)',
+        }}
         {...modalProps}
       >
         {children}

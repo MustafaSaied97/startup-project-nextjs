@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Modal } from '../UI';
+import * as Icons from '@/assets/icons';
 
 export default function GenericModal() {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -14,7 +15,7 @@ export default function GenericModal() {
         modal
       </button>
       {isOpenModal && (
-        <Modal isOpen={isOpenModal} onClose={closeModal}>
+        <Modal isOpen={isOpenModal} onClose={closeModal} >
           <Modal.Header onClose={closeModal} />
           <Modal.Body >
             <h1 className='text-center text-lg font-normal sm:text-xl'>{'general.cancel_order'}</h1>
