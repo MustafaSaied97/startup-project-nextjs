@@ -2,16 +2,17 @@
 import React, { useState } from 'react';
 import * as Icons from '@/assets/icons';
 
-const Modal = ({ isOpen, children, ...modalProps }) => {
+const Modal = ({ isOpen, onClose, maxWidth = 500, backgroundColor = 'var(--tr-bg)', children, ...modalProps }) => {
   if (!isOpen) return null;
-  
+
   return (
     <section className='fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none'>
       {/* backdrop */}
       <div onClick={onClose} className='backdrop fixed z-0 h-screen w-screen bg-gray-500/20 dark:bg-gray-900/30'></div>
       {/* modal structure */}
       <div
-        className='relative z-10 flex max-h-[70vh] w-[90%] max-w-[500px] flex-col overflow-y-auto rounded-lg border-0 bg-[--tr-bg] px-6 py-3  shadow-lg outline-none focus:outline-none sm:w-[70%] md:w-[60%] lg:w-[50%]'
+        className='relative z-10 flex max-h-[70vh] w-[90%]  flex-col gap-y-2 overflow-y-auto rounded-lg border-0  px-6 py-3 shadow-lg sm:w-[70%]'
+        style={{ maxWidth, backgroundColor }}
         {...modalProps}
       >
         {children}
@@ -20,7 +21,7 @@ const Modal = ({ isOpen, children, ...modalProps }) => {
   );
 };
 
-Modal.Header = ({ children, className = 'flex w-full items-start justify-end rounded-t border-gray-300', onClose, ...headerProps }) => {
+Modal.Header = ({ children, className = 'flex w-full items-start justify-end rounded-t ', onClose, ...headerProps }) => {
   return (
     <header className={`${className}`} {...headerProps}>
       {children || (
@@ -32,11 +33,7 @@ Modal.Header = ({ children, className = 'flex w-full items-start justify-end rou
   );
 };
 
-Modal.Body = ({
-  children,
-  className = 'relative flex w-full flex-auto flex-col items-center justify-between gap-3 rounded pb-8 pt-2',
-  ...bodyProps
-}) => {
+Modal.Body = ({ children, className = 'relative w-full', ...bodyProps }) => {
   return (
     <main className={`${className}`} {...bodyProps}>
       {children}
