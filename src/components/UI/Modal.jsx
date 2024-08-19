@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 import * as Icons from '@/assets/icons';
 
-const Modal = ({ isOpen, onClose, children, ...modalProps }) => {
+const Modal = ({ isOpen, children, ...modalProps }) => {
   if (!isOpen) return null;
-
+  
   return (
     <section className='fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none'>
       {/* backdrop */}
