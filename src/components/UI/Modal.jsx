@@ -10,7 +10,7 @@ const Modal = ({ isOpen, onClose, children }) => {
       {/* backdrop */}
       <div onClick={onClose} className='backdrop fixed z-0 h-screen w-screen bg-gray-500/20 dark:bg-gray-900/30'></div>
       {/* modal structure */}
-      <div className='relative z-10 flex max-h-[70vh] w-[90%] max-w-[500px] flex-col overflow-y-auto rounded-lg border-0 bg-[--tr-bg] p-10 shadow-lg outline-none focus:outline-none sm:w-[70%] md:w-[60%] lg:w-[50%]'>
+      <div className='relative z-10 flex max-h-[70vh] w-[90%] max-w-[500px] flex-col overflow-y-auto rounded-lg border-0 bg-[--tr-bg] px-6 py-3  shadow-lg outline-none focus:outline-none sm:w-[70%] md:w-[60%] lg:w-[50%]'>
         {children}
       </div>
     </section>
