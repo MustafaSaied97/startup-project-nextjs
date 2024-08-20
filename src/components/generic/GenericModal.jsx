@@ -3,7 +3,6 @@ import { Modal } from '../UI';
 
 export default function GenericModal() {
   const { isModalOpen, openModal, closeModal } = Modal.useModal();
-
   return (
     <>
       <button onClick={openModal} className='text-red-400'>

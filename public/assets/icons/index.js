@@ -20,6 +20,9 @@ export { default as Burger } from './Burger.jsx';
 export { default as User } from './User.jsx';
 export { default as LightMode } from './LightMode.jsx';
 export { default as DarkMode } from './DarkMode.jsx';
+export { default as EmptyStar } from './EmptyStar.jsx';
+export { default as HalfStar } from './HalfStar.jsx';
+export { default as FilledStar } from './FilledStar.jsx';
 
 
 
