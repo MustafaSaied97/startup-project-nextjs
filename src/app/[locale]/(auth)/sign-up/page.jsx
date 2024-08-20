@@ -212,7 +212,7 @@ export default function SignUpPage() {
             {t('general.already_have_account')}{' '}
           </span>
           <Link
-            href={ROUTES_PATH.website.login}
+            href={ROUTES_PATH.auth.login}
             className='text-base font-semibold capitalize  leading-none tracking-tight text-rose-600 underline'
           >
             {t('general.login')}

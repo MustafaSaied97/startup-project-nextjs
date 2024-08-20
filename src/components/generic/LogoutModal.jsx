@@ -24,7 +24,7 @@ export default function Logout() {
       //remove auth from state-mangement and cookies
       dispatch(removeAuth());
       notify(res?.message, { type: 'success' });
-      router.push(ROUTES_PATH.website.login);
+      router.push(ROUTES_PATH.auth.login);
     } catch (err) {
       console.log('err', err);
       notify(err?.message, { type: 'error' });

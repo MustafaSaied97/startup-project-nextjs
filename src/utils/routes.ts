@@ -7,13 +7,15 @@ export const ROLES = {
 const createRoute = (path: string, role: string | null = null) => ({ path, role });
 
 export const ROUTES = {
-  website: {
-    home: createRoute('/'),
+  auth: {
     login: createRoute('/login'),
     signUp: createRoute('/sign-up'),
     forgetPassword: createRoute('/forget-password'),
     resetPassword: createRoute('/reset-password'),
     verification: createRoute('/verification'),
+  },
+  website: {
+    home: createRoute('/'),
     aboutUs: createRoute('/about-us'),
     contactUs: createRoute('/contact-us'),
     privacyPolicy: createRoute('/privacy-policy'),

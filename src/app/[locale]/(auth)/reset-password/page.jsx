@@ -44,7 +44,7 @@ export default function ResetPasswordPage() {
       const res = await apis.resetPassword(payloadData);
       notify(res?.message, { type: 'success' });
       // reset();
-      router.replace(ROUTES_PATH.website.login);
+      router.replace(ROUTES_PATH.auth.login);
     } catch (err) {
       notify(err?.message || err?.data?.message, { type: 'error' });
     } finally {

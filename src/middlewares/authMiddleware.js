@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ROUTES_PATH, ROUTES_ROLE, isTokenValid } from '@/utils';
-const websiteAuthPaths = [ROUTES_PATH.website.login, ROUTES_PATH.website.signUp, ROUTES_PATH.website.forgetPassword, ROUTES_PATH.website.resetPassword, ROUTES_PATH.website.verification];
+const websiteAuthPaths = [ROUTES_PATH.auth.login, ROUTES_PATH.auth.signUp, ROUTES_PATH.auth.forgetPassword, ROUTES_PATH.auth.resetPassword, ROUTES_PATH.auth.verification];
 
 export default function authMiddleware(request, response) {
   let { pathname } = request.nextUrl;
@@ -22,12 +22,12 @@ export default function authMiddleware(request, response) {
       // Delete token and role
       response.cookies.delete({ name: 'authData' });
       // Redirect to login
-      const loginPath = matchedRoute.split('/').includes('panel') ? `/${lang}${ROUTES_PATH.panel.login}` : `/${lang}${ROUTES_PATH.website.login}`;
+      const loginPath = `/${lang}${ROUTES_PATH.auth.login}`;
       return NextResponse.redirect(new URL(loginPath, request.url));
     }
 
     if (!ROUTES_ROLE[matchedRoute].includes(role)) {
-      const notMatchedRolePath = role === 'user' ? `/${lang}${ROUTES_PATH.website.home}` : `/${lang}${ROUTES_PATH.panel.home}`;
+      const notMatchedRolePath = `/${lang}${ROUTES_PATH.website.home}`;
       return NextResponse.redirect(new URL(notMatchedRolePath, request.url));
     }
 

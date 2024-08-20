@@ -35,23 +35,23 @@ export default function LoginPage() {
       type: 'user',
     };
     console.log('payloadData', payloadData);
-    // setIsProcessing(true);
-    // try {
-    //   const res = await apis.login(payloadData);
-    //   dispatch(
-    //     storeAuth({
-    //       token: res.data.access_token,
-    //       ...res.data.user,
-    //     })
-    //   );
-    //   notify(res?.message, { type: 'success' });
-    //   // reset();
-    //   router.replace(ROUTES_PATH.website.home);
-    // } catch (err) {
-    //   notify(err?.message || err?.data?.message, { type: 'error' });
-    // } finally {
-    //   setIsProcessing(false);
-    // }
+    setIsProcessing(true);
+    try {
+      const res = await apis.login(payloadData);
+      dispatch(
+        storeAuth({
+          token: res.data.access_token,
+          ...res.data.user,
+        })
+      );
+      notify(res?.message, { type: 'success' });
+      // reset();
+      router.replace(ROUTES_PATH.website.home);
+    } catch (err) {
+      notify(err?.message || err?.data?.message, { type: 'error' });
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   return (
@@ -90,7 +90,7 @@ export default function LoginPage() {
           }}
         />
         <Link
-          href={ROUTES_PATH.website.forgetPassword}
+          href={ROUTES_PATH.auth.forgetPassword}
           className='text-right text-base font-normal capitalize leading-none tracking-tight text-gray-700 underline dark:text-gray-400'
         >
           {'forget_password'}
@@ -103,7 +103,7 @@ export default function LoginPage() {
             {'not_have_account '}
           </span>
           <Link
-            href={ROUTES_PATH.website.signUp}
+            href={ROUTES_PATH.auth.signUp}
             className='text-base font-semibold capitalize  leading-none tracking-tight text-rose-600 underline'
           >
             {'signup'}

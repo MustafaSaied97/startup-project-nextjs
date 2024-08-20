@@ -65,7 +65,7 @@ export default function NavBar1() {
             )
           }
         />
-        {isAuthenticated ? <LogoutModal /> : <Link href={ROUTES_PATH.website.login}>{'login'}</Link>}
+        {isAuthenticated ? <LogoutModal /> : <Link href={ROUTES_PATH.auth.login}>{'login'}</Link>}
       </section>
     </nav>
   );
