@@ -16,11 +16,9 @@ export default function NavBar1() {
   const currentTheme = useSelector((state) => state.theme.currentTheme);
   const layoutData = useSelector((state) => state.layout.layoutData);
 
-  const { token: isAuthenticated, role, has_store, isMemberInWebsite } = useSelector((state) => state.auth.authData);
   const router = useRouter();
   const pathname = usePathname();
   const dropDownPages = [
-    { name: 'login', path: ROUTES_PATH?.website?.login },
     { name: 'order_history', path: ROUTES_PATH?.website?.orderHistory },
     { name: 'referrals', path: ROUTES_PATH?.website?.referrals },
   ];
@@ -45,7 +43,7 @@ export default function NavBar1() {
 
         <DropdownList
           Button={({ toggle }) => (
-            <button onClick={toggle} className='m-0! h-full p-0!'>
+            <button onClick={toggle} className='m-0! p-0! h-full'>
               <Icons.User onClick={toggle} className='m-0  ms-2 inline h-6 w-5 p-0' />
             </button>
           )}
@@ -56,7 +54,7 @@ export default function NavBar1() {
               >
                 {dropDownPages.map((page, index) => (
                   <li key={index} className={`m-1 cursor-pointer rounded-lg px-2 py-1  hover:bg-slate-300/20  `}>
-                    <button onMouseDown={() => router.replace(page.path)} className={` ${pathname == page.path ? 'text-red-500' : ''} `}>
+                    <button onMouseDown={() => {}} className={` ${pathname == page.path ? 'text-red-500' : ''} `}>
                       {page.name}
                     </button>
                   </li>
@@ -65,7 +63,6 @@ export default function NavBar1() {
             )
           }
         />
-        {isAuthenticated ? <LogoutModal /> : <Link href={ROUTES_PATH.website.login}>{'login'}</Link>}
       </section>
     </nav>
   );

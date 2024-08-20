@@ -1,9 +1,7 @@
-import authMiddleware from '@/middlewares/authMiddleware';
 import localeMiddleware from '@/middlewares/localeMiddleware';
 
 export default async function middleware(request) {
-  const response = localeMiddleware(request);
-  return authMiddleware(request, response);
+  return localeMiddleware(request);
 }
 
 export const config = {
