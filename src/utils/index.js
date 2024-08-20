@@ -1,4 +1,4 @@
-export { ROUTES, ROUTES_PATH } from './routes';
+export { ROUTES, ROUTES_PATH, ROUTES_ROLE } from './routes';
 
 export { VALIDATIONS } from './validations';
 
