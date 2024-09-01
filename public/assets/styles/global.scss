@@ -61,17 +61,11 @@
     100vh - var(--main-footer-height)
   ); //in case of header not fixed use this calc(100vh -var(--main-header-height) - var(--main-footer-height));
 
-  --elevated-background: 232, 233, 235;
+    overflow-y: auto;
+    
   --primary-clr: #0963ff2e;
   --primary-lighter-clr: #0758e7;
   --secondary-clr: #1d1d1d;
-  
-  overflow-y: auto;
-  // scroll-behavior: smooth;
-}
-
-/* color variables in ligth and dark themes */
-.light {
   --pr-bg: white; //pr---primary
   --sec-bg: black; //sec---secondary
   --tr-bg: white; //tr---Tertiary
@@ -100,7 +94,7 @@
   --Input-clr: #b0b0b0;
 }
 
-.dark {
+[data-theme='dark'] {
   --pr-bg: #1c1917;
   --sec-bg: #27272a; //#2F333A
   --tr-bg: #27272a; //#2F333A
