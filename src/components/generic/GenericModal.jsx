@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Modal } from '../UI';
 
-export default function FormModal() {
+export default function GenericModal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <>

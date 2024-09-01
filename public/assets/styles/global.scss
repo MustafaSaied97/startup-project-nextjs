@@ -44,7 +44,7 @@
   }
 
   .data-exist-or-focused {
-    @apply absolute -top-2.5 start-2 -translate-x-[1%] translate-y-0 scale-75 bg-white font-medium text-[var(--main-blue-color)] transition-all peer-focus:-top-2.5 peer-focus:-translate-x-1/4 peer-focus:translate-y-0 peer-focus:scale-75 peer-focus:text-[var(--main-blue-color)]
+    @apply absolute -top-2.5 start-2 -translate-x-[1%] translate-y-0 scale-75 bg-white font-medium text-[var(--main-blue-color)] transition-all peer-focus:-top-2.5 peer-focus:-translate-x-1/4 peer-focus:translate-y-0 peer-focus:scale-75 peer-focus:text-[var(--main-blue-color)];
   }
 
   .placeholder-shown {
@@ -79,7 +79,6 @@
   }
 }
 
-
 :root {
   --main-header-height: 90px;
   --main-footer-height: 371px;
@@ -87,66 +86,54 @@
     100vh - var(--main-footer-height)
   ); //in case of header not fixed use this calc(100vh -var(--main-header-height) - var(--main-footer-height));
 
-    overflow-y: auto;
+  overflow-y: auto;
 
-  --primary-clr: #0963ff2e;
-  --primary-lighter-clr: #0758e7;
-  --secondary-clr: #1d1d1d;
+  //generic
+  --pr-text: #000000;
+  //website
   --pr-bg: white; //pr---primary
   --sec-bg: black; //sec---secondary
   --tr-bg: white; //tr---Tertiary
-  --quat-bg: white; //quat---Quaternary
-  --modal-bg: white;
+  --default-bg: white;
+  //panel
   --panel-bg: white;
   --panel-bg-2: #f3f4f6;
   --panel-bg-3: #111827;
   --panel-bg-4: #fcfdfd;
-
-  --pr-text: #000000;
-  --sec-text: #000000;
   --shadow: #0000004f;
 
   //desgin system colors
-  --title-text-clr: #131313;
-  --main-clr: #f11237;
-  --text-clr: #404553;
-  --gray-clr: #f4f4f4;
-  --gray-text-clr: #7e859b;
-  --White-text-clr: #ffffff;
-  --pending-clr: #fa8232;
-  --completed-clr: #2db224;
-  --canceled-clr: #ff001f;
-  --Review-clr: #fabd2e;
-  --Input-clr: #b0b0b0;
+    --primary-clr: #f11237;
+    --primary-clr-50: color-mix(in srgb, var(--primary-clr) 50%, #0000 15%);
+    --primary-clr-15: color-mix(in srgb, var(--primary-clr) 15%, #0000 15%);
+    //new added --> desgin system colors from prototype
+    --main-clr: var(--primary-clr);
+    --title-text-clr: #131313;
+    --text-clr: #898d97;
+    --gray-clr: #f4f4f4;
+    --gray-text-clr: #7e859b;
+    --White-text-clr: #ffffff;
+    --pending-clr: #fa8232;
+    --completed-clr: #2db224;
+    --canceled-clr: #ff001f;
+    --Review-clr: #fabd2e;
+    --Input-clr: #b0b0b0;
 }
 
 [data-theme='dark'] {
+  //generic
+  --pr-text: white;
+  //website
   --pr-bg: #1c1917;
   --sec-bg: #27272a; //#2F333A
   --tr-bg: #27272a; //#2F333A
-  --quat-bg: #27272a;
-  --modal-bg: #292424;
+  --default-bg: #1c1917;
+  //panel
   --panel-bg: #111827;
   --panel-bg-2: #1f2937;
   --panel-bg-3: #1f2937;
   --panel-bg-4: #262e3b;
   --shadow: #3a3a3a74;
-
-  --pr-text: white;
-  --sec-text: #000000;
-
-  //desgin system colors
-  --title-text-clr: #131313;
-  --main-clr: #f11237;
-  --text-clr: #898d97;
-  --gray-clr: #f4f4f4;
-  --gray-text-clr: #7e859b;
-  --White-text-clr: #ffffff;
-  --pending-clr: #fa8232;
-  --completed-clr: #2db224;
-  --canceled-clr: #ff001f;
-  --Review-clr: #fabd2e;
-  --Input-clr: #b0b0b0;
 }
 
 * {

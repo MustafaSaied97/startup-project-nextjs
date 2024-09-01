@@ -9,4 +9,4 @@ export { default as ScrollToTop } from './ScrollToTop.jsx';
 export { default as CustomGroup } from './CustomGroup.jsx';
 export { default as CustomImg } from './CustomImg.jsx';
 export { default as NoResultsFound } from './NoResultsFound.jsx';
-export { default as FormModal } from './FormModal.jsx';
+export { default as GenericModal } from './GenericModal.jsx';

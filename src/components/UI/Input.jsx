@@ -50,7 +50,7 @@ export default function Input({ control, floatingLabel, type = 'text', label, na
       {/* for errors */}
       {errors?.[name] && (
         <p className=' flex items-center gap-1 text-[clamp(.5rem,_100%,_0.875rem)]  font-normal text-[--canceled-clr]'>
-          <Icons.Danger/>
+          <Icons.Danger />
           {errors?.[name].message}
         </p>
       )}

@@ -2,19 +2,19 @@
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { VALIDATIONS, notify } from '@/utils';
-import { ROUTES_PATH } from '@/utils/routes';
 import { useTranslations } from 'next-intl';
 import useRequest from '@/hooks/useRequest';
 import { apis } from '@/services/apis';
-import { useSearchParams } from 'next/navigation';
 import { Button, CustomReactSelect, Input, Modal } from '@/components/UI';
 import useLocale from '@/hooks/useLocale';
 import Link from 'next/link';
+import { useClient } from '@/hooks';
 export default function FormModal() {
+  const isClient = useClient();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { locale } = useLocale();
   const t = useTranslations();
-  const searchParams = useSearchParams();
+
   const [isProcessing, setIsProcessing] = useState(false);
   const { resData } = useRequest({ queryFn: apis.getCountries, queryKey: 'getCountries' });
   const countryOptions = useMemo(
@@ -46,7 +46,6 @@ export default function FormModal() {
       country_id: fromData.country.value,
       password: fromData.password,
       password_confirmation: fromData.confirmPassword,
-      ...(searchParams.get('referral_code') && { referral_code: searchParams.get('referral_code') }),
     };
 
     setIsProcessing(true);
@@ -62,14 +61,20 @@ export default function FormModal() {
   };
   return (
     <>
-      <button onClick={() => setIsModalOpen(true)} className='text-red-400'>
-        modal
-      </button>
+      {isClient && (
+        <button onClick={() => setIsModalOpen(true)} className='text-red-400'>
+          form modal
+        </button>
+      )}
+
       {isModalOpen && (
-        <Modal onClose={() => setIsModalOpen(false)}>
-          <Modal.Header />
+        <Modal
+          onClose={() => setIsModalOpen(false)}
+          style={{ maxHeight: '100vh', maxWidth: '700px', backgroundColor: 'var(--pr-bg)', color: 'var(--pr-text)' }}
+        >
+          <Modal.Header className='-mb-2 flex justify-end' />
           <Modal.Body>
-            <form onSubmit={handleSubmit(onSubmit)} action='' className='mt-8 flex w-full flex-col gap-3'>
+            <form onSubmit={handleSubmit(onSubmit)} action='' className='flex w-full flex-col gap-3'>
               <h4 className=' text-2xl font-semibold'>{t('general.create_account_title')}</h4>
               <p className='mb-7 text-base font-normal capitalize leading-none text-slate-500'>{t('general.signup_hint')}</p>
               <div>
@@ -120,10 +125,7 @@ export default function FormModal() {
                 <span className='text-base font-normal capitalize  leading-none tracking-tight text-gray-700 dark:text-gray-400'>
                   {t('general.already_have_account')}{' '}
                 </span>
-                <Link
-                  href={'/'}
-                  className='text-base font-semibold capitalize  leading-none tracking-tight text-[var(--primary-clr)] underline'
-                >
+                <Link href={'/'} className='text-base font-semibold capitalize  leading-none tracking-tight text-[var(--primary-clr)] underline'>
                   {t('general.login')}
                 </Link>
               </p>

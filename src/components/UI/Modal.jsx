@@ -15,10 +15,10 @@ const Modal = ({ onClose, children, ...props }) => {
 
   return ReactDOM.createPortal(
     <ModalContext.Provider value={{ onClose }}>
-      <section className='fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none'>
+      <section className='fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none '>
         <div onClick={onClose} className='backdrop fixed z-0 h-screen w-screen bg-gray-500/20'></div>
         <div
-          className='relative z-10 flex max-h-[70vh] w-[90%] max-w-[500px] flex-col gap-y-2 overflow-y-auto rounded-lg border-0 bg-white px-6 py-3 shadow-lg sm:w-[70%]'
+          className='relative z-10 flex max-h-[70vh] w-[90%] max-w-[500px] flex-col gap-y-2 overflow-y-auto rounded-lg border-0  px-6 py-3 shadow-lg sm:w-[70%]'
           {...props}
         >
           {children}
@@ -34,7 +34,7 @@ Modal.Header = ({ children, className = 'flex w-full items-start justify-end rou
   return (
     <header className={`${className}`} {...headerProps}>
       {children || (
-        <button className='h-6 w-6 rounded-md text-center text-white hover:bg-gray-300' onClick={onClose}>
+        <button type='button' className='h-6 w-6 rounded-md text-center text-white hover:bg-gray-300' onClick={onClose}>
           <Icons.Close />
         </button>
       )}
