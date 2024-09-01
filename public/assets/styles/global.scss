@@ -233,7 +233,10 @@ th + div {
     grid-template-columns: repeat(auto-fill, minmax(190px, 150px));
   }
 }
-
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
 @media (max-width: 640px) {
   #reponsive-table table {
     border-collapse: separate;
