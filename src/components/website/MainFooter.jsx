@@ -2,18 +2,24 @@
 import React, { useMemo } from 'react';
 import Image from 'next/image';
 import * as Icons from '@/assets/icons';
-import { Link, usePathname } from '@/navigation';
-import { useLocale, useTranslations } from 'next-intl';
 import { ROUTES_PATH } from '@/utils';
 import { useSelector } from 'react-redux';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import useLocale from '@/hooks/useLocale';
 
 export default function MainFooter() {
   const layoutData = useSelector((state) => state.layout.layoutData);
+
   const locale = useLocale();
   const t = useTranslations();
   const pathname = usePathname();
   const pages = useMemo(() => [
-    { title: t('general.home'), path: ROUTES_PATH.website.home },
+    {
+      title: t('general.home'),
+      path: ROUTES_PATH.website.home,
+    },
     { title: 'about_us', path: ROUTES_PATH.website.aboutUs },
     { title: 'contact_us', path: ROUTES_PATH.website.contactUs },
     { title: 'privacy_policy', path: ROUTES_PATH.website.privacyPolicy },

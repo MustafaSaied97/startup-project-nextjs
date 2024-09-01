@@ -1,6 +1,6 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import React from 'react';
-import { useRouter } from '@/navigation';
 export default function NotAuthorized() {
     const router = useRouter();
 

@@ -1,5 +1,5 @@
 import { useSearchParams } from 'next/navigation';
-import { useRouter } from '@/navigation';
+import { useRouter } from 'next/navigation';
 
 export default function useQuery(path = '', isScrollToTop = true) {
   const router = useRouter();

@@ -13,7 +13,7 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import { useLocale } from 'next-intl';
+import useLocale from '@/hooks/useLocale';
 
 export default function Slider() {
   const locale = useLocale();
