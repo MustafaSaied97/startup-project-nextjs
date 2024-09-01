@@ -3,10 +3,9 @@ import * as Icons from '@/assets/icons';
 
 import { ROUTES_PATH } from '@/utils/routes';
 import { useTranslations } from 'next-intl';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { apis } from '@/services/apis';
-import { useRouter } from '@/navigation';
 import { useDispatch } from 'react-redux';
 import { storeAuth } from '@/state-mangement/features/authSlice';
 import { notify } from '@/utils';

@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { VALIDATIONS, notify } from '@/utils';
 import { CustomSelect, TextInput } from '@/components';
-import { Link } from '@/navigation';
+import Link from 'next/link';
 import { ROUTES_PATH } from '@/utils/routes';
 import { useTranslations } from 'next-intl';
 import useRequest from '@/hooks/useRequest';

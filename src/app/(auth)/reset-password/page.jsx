@@ -6,8 +6,7 @@ import { VALIDATIONS, notify } from '@/utils';
 import { ROUTES_PATH } from '@/utils/routes';
 import { useTranslations } from 'next-intl';
 import { apis } from '@/services/apis';
-import { useRouter } from '@/navigation';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { CustomSelect, TextInput } from '@/components';
 
 export default function ResetPasswordPage() {

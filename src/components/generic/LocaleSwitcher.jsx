@@ -1,24 +1,19 @@
 
 'use client';
 import * as Icons from '@/assets/icons';
-
-import { useLocale } from 'next-intl';
-import { usePathname, useRouter } from '@/navigation';
-import { localeNames, locales } from '@/plugins/i18n.js';
-
+import useLocale from '@/hooks/useLocale';
+import { LOCALE_COOKIE_NAME, localeNames, locales } from '@/plugins/i18n.js';
 import { useState } from 'react';
+import { setCookies } from '@/utils/cookies-action';
 
 export default function LocaleSwitcher() {
   const locale = useLocale();
-  const router = useRouter();
-  const pathName = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   const switchLocale = (e) => {
     const newLocale = e.target.getAttribute('name');
     if (locale == newLocale) return 
-    router.replace(pathName, { locale: newLocale }) 
-    router.refresh()
+    setCookies({ name: LOCALE_COOKIE_NAME, value: newLocale });
   };
   
 
@@ -26,10 +21,7 @@ export default function LocaleSwitcher() {
     <div onBlur={() => setIsOpen(false)} className='relative w-fit'>
       <button onClick={() => setIsOpen(!isOpen)} className='inline-flex w-full  items-center gap-1 rounded-lg  py-2.5 text-center text-lg text-[--pr-text]    lg:px-5 '>
         <Icons.Language />
-        <span className='hidden lg:inline'>{locale === 'en' ? 'ENG' : 'AR'}</span>
-        {/* <svg className='ms-1 aspect-square w-3 text-gray-300' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 10 6'>
-          <path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='m1 1 4 4 4-4' />
-        </svg> */}
+        {/* <span className='hidden lg:inline'>{locale === 'en' ? 'ENG' : 'AR'}</span> */}
         <Icons.Arrow />
       </button>
       {isOpen && (

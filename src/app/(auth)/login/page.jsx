@@ -3,7 +3,9 @@ import * as Icons from '@/assets/icons';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { VALIDATIONS, notify } from '@/utils';
-import { Link, useRouter } from '@/navigation';
+import {  useRouter } from 'next/navigation';
+import Link from 'next/link';
+
 import { ROUTES_PATH } from '@/utils/routes';
 import { useTranslations } from 'next-intl';
 import { apis } from '@/services/apis';

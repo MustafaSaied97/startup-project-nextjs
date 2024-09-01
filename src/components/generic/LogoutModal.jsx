@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import React, { useState, useMemo, useEffect } from 'react';
 import { notify } from '@/utils';
-import { useRouter, usePathname } from '@/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { ROUTES_PATH } from '@/utils/routes';
 import { apis } from '@/services/apis';
 import { useDispatch } from 'react-redux';

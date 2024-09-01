@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import * as Icons from '@/assets/icons';
 
-import { useLocale } from 'next-intl';
+import useLocale from '@/hooks/useLocale';
 import { debounceFunc } from '@/utils';
 import useCachedState from '@/hooks/useCashedState';
 

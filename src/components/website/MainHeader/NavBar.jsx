@@ -4,20 +4,19 @@ import Image from 'next/image';
 import * as Icons from '@/assets/icons';
 import { DropdownList, LocaleSwitcher, LogoutModal, ThemeToggle } from '@/components';
 import { useTranslations } from 'next-intl';
-import { Link, usePathname } from '@/navigation';
 import { useSelector } from 'react-redux';
-import { useRouter } from '@/navigation';
 
 import HeaderSearch from './HeaderSearch';
 import { ROUTES_PATH } from '@/utils';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
-export default function NavBar1() {
+export default function NavBar() {
   const t = useTranslations();
   const currentTheme = useSelector((state) => state.theme.currentTheme);
   const layoutData = useSelector((state) => state.layout.layoutData);
 
   const { token: isAuthenticated, role, has_store, isMemberInWebsite } = useSelector((state) => state.auth.authData);
-  const router = useRouter();
   const pathname = usePathname();
   const dropDownPages = [
     { name: 'login', path: ROUTES_PATH?.website?.login },

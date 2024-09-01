@@ -1,8 +1,8 @@
 import authMiddleware from '@/middlewares/authMiddleware';
-import localeMiddleware from '@/middlewares/localeMiddleware';
+import { NextResponse } from 'next/server';
 
 export default async function middleware(request) {
-  const response = localeMiddleware(request);
+  const response = NextResponse.next()
   return authMiddleware(request, response);
 }
 
