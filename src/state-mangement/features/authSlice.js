@@ -35,23 +35,14 @@ export const authSlice = createSlice({
         isMemberInWebsite: role == 'user' || role == 'reseller',
       };
       state.authData = { ...storedAuthData };
-
       storeAuthDataInCookies(storedAuthData);
     },
     removeAuth(state, action) {
-      //1- remove auth from state-mangement
       state.authData = {};
-      //2- remove auth from cookies
       deleteCookies({ name: 'authData' });
     },
     updateAuth(state, action) {
       const updatedProperties = action?.payload || {};
-      // let isExist = true;
-      // Object.keys(updatedProperties).forEach((key) => {
-      //   if (Object.keys(state.authData).includes(key))return;
-      //   isExist = false;
-      // });
-      // if (!isExist) return;
       const updatedAuthData = { ...state.authData, ...updatedProperties };
       state.authData = updatedAuthData;
       storeAuthDataInCookies(updatedAuthData);
