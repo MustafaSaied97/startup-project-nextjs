@@ -8,8 +8,6 @@ import { useDispatch } from 'react-redux';
 import { themeInit } from '@/state-mangement/features/themeSlice';
 
 function StoreInitiatializton({ children }) {
-  //initialize all store state the came from localstorage and cookies {client side}
-
   const dispatch = useDispatch();
   useLayoutEffect(() => {
     dispatch(themeInit());

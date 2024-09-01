@@ -1,4 +1,4 @@
-import { GenericModal, Slider } from '@/components';
+import { FormModal, Slider } from '@/components';
 import { getTranslations } from 'next-intl/server';
 import React from 'react';
 
@@ -12,7 +12,7 @@ export default async function HomePage() {
       <p className='text-xl font-bold'>{t('home')}bold</p>
       <p className='text-xl font-[1000]'>{t('home')}extrabold</p>
 
-      <GenericModal />
+      <FormModal />
       <div className='mt-16'>
         <Slider />
       </div>

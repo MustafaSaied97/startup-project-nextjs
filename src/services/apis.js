@@ -8,6 +8,9 @@ export const apis = {
   getGroups: (options = {}) => {
     return withAxios({ url: `/api/groups${objectToQueryString(options)}`, method: 'GET' });
   },
+  getCountries: () => {
+    return withAxios({ url: `/api/countries`, method: 'GET' });
+  },
 };
 
 

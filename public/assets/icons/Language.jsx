@@ -1,12 +1,8 @@
 'use client';
 
 import React from 'react';
-import { useSelector } from 'react-redux';
 
-export default function Language({ color }) {
-  const currentTheme = useSelector((state) => state.theme.currentTheme);
-  const defaultColor = currentTheme === 'light' ? '#969696' : '#CDCDCD';
-  color = color || defaultColor;
+export default function Language({ color = '#969696' }) {
   return (
     <svg width={24} height={24} viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <g id='Language' clipPath='url(#clip0_1_1226)'>
