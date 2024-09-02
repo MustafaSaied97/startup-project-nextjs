@@ -20,7 +20,8 @@
   }
 
   .responsive-text {
-    @apply text-xs sm:text-sm lg:text-base;
+    //   @apply text-xs sm:text-sm lg:text-base;
+    @apply text-[clamp(0.875rem,_2.5vw,_1rem)];
   }
 
   .skeleton {
@@ -103,21 +104,21 @@
   --shadow: #0000004f;
 
   //desgin system colors
-    --primary-clr: #f11237;
-    --primary-clr-50: color-mix(in srgb, var(--primary-clr) 50%, #0000 15%);
-    --primary-clr-15: color-mix(in srgb, var(--primary-clr) 15%, #0000 15%);
-    //new added --> desgin system colors from prototype
-    --main-clr: var(--primary-clr);
-    --title-text-clr: #131313;
-    --text-clr: #898d97;
-    --gray-clr: #f4f4f4;
-    --gray-text-clr: #7e859b;
-    --White-text-clr: #ffffff;
-    --pending-clr: #fa8232;
-    --completed-clr: #2db224;
-    --canceled-clr: #ff001f;
-    --Review-clr: #fabd2e;
-    --Input-clr: #b0b0b0;
+  --primary-clr: #f11237;
+  --primary-clr-50: color-mix(in srgb, var(--primary-clr) 50%, #0000 15%);
+  --primary-clr-15: color-mix(in srgb, var(--primary-clr) 15%, #0000 15%);
+  //new added --> desgin system colors from prototype
+  --main-clr: var(--primary-clr);
+  --title-text-clr: #131313;
+  --text-clr: #898d97;
+  --gray-clr: #f4f4f4;
+  --gray-text-clr: #7e859b;
+  --White-text-clr: #ffffff;
+  --pending-clr: #fa8232;
+  --completed-clr: #2db224;
+  --canceled-clr: #ff001f;
+  --Review-clr: #fabd2e;
+  --Input-clr: #b0b0b0;
 }
 
 [data-theme='dark'] {
@@ -235,7 +236,9 @@ th + div {
 }
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
-    transition: background-color 600000s 0s, color 600000s 0s;
+  transition:
+    background-color 600000s 0s,
+    color 600000s 0s;
 }
 @media (max-width: 640px) {
   #reponsive-table table {

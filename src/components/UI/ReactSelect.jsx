@@ -13,7 +13,7 @@ const CustomComponents = {
   },
 };
 
-export default function CustomSelect(props) {
+export default function ReactSelect(props) {
   const t = useTranslations();
   const isDark = useSelector((state) => state.theme.currentTheme) == 'dark';
   const reactSelectDarkTheme = (theme) => {

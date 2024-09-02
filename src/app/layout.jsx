@@ -11,7 +11,7 @@ import { ScrollToTop } from '@/components';
 import { apis } from '@/services/serverApis';
 import { cookies } from 'next/headers';
 
-export async function generateMetadata({}) {
+export async function generateMetadata() {
   const { data: layoutData } = (await apis.getLayout()) || {};
   const locale = await getLocale();
   const slogan = layoutData?.style?.[`slogan_${locale}`];

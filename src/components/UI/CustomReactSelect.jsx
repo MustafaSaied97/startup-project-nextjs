@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useController } from 'react-hook-form';
-import { CustomSelect } from '@/components';
+import ReactSelect from './ReactSelect';
 import * as Icons from '@/assets/icons';
 
 export default function CustomReactSelect({ control, label, name, options, rules, ...inputProps }) {
@@ -21,7 +21,7 @@ export default function CustomReactSelect({ control, label, name, options, rules
           {label}
         </label>
       )}
-      <CustomSelect
+      <ReactSelect
         styles={{
           control: (baseStyles, state) => ({
             ...baseStyles,

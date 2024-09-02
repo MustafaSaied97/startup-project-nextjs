@@ -5,7 +5,17 @@ import { VALIDATIONS, notify } from '@/utils';
 import { useTranslations } from 'next-intl';
 import useRequest from '@/hooks/useRequest';
 import { apis } from '@/services/apis';
-import { Button, CustomReactSelect, Input, Modal } from '@/components/UI';
+import {
+  Button,
+  CustomReactSelect,
+  Input,
+  Modal,
+  Select,
+  ImgInputWithPreview,
+  ColorPickerWithPreview,
+  CustomDataPicker,
+  DatePicker,
+} from '@/components/UI';
 import useLocale from '@/hooks/useLocale';
 import Link from 'next/link';
 import { useClient } from '@/hooks';
@@ -30,34 +40,21 @@ export default function FormModal() {
   const { register, handleSubmit, control, reset, watch } = useForm({
     defaultValues: {
       roleType: roles?.[0]?.value,
+      logo: '',
+      identity_color: '',
       fullName: '',
       email: '',
       country: null,
-      passowrd: '',
+      country2: null,
+      start_date: '',
+      end_date: '',
+      password: '',
       confirmPassword: '',
     },
   });
 
   const onSubmit = async (fromData) => {
-    const payloadData = {
-      role: fromData.roleType,
-      name: fromData.fullName,
-      email: fromData.email,
-      country_id: fromData.country.value,
-      password: fromData.password,
-      password_confirmation: fromData.confirmPassword,
-    };
-
-    setIsProcessing(true);
-    try {
-      await websiteApis.signUp(payloadData);
-      notify(t('general.verfication_msg'), { type: 'success', autoClose: 10000 });
-      reset();
-    } catch (err) {
-      notify(err?.message || err?.data?.message, { type: 'error' });
-    } finally {
-      setIsProcessing(false);
-    }
+    console.log('fromData', fromData);
   };
   return (
     <>
@@ -72,7 +69,9 @@ export default function FormModal() {
           onClose={() => setIsModalOpen(false)}
           style={{ maxHeight: '100vh', maxWidth: '700px', backgroundColor: 'var(--pr-bg)', color: 'var(--pr-text)' }}
         >
-          <Modal.Header className='-mb-2 flex justify-end' />
+          <Modal.Header
+          //className='-mb-2 flex justify-end'
+          />
           <Modal.Body>
             <form onSubmit={handleSubmit(onSubmit)} action='' className='flex w-full flex-col gap-3'>
               <h4 className=' text-2xl font-semibold'>{t('general.create_account_title')}</h4>
@@ -102,16 +101,62 @@ export default function FormModal() {
                   ))}
                 </div>
               </div>
+              <ImgInputWithPreview name='logo' label={t('general.upload_store_logo')} rules={VALIDATIONS.required} control={control} />
               <Input name={'fullName'} rules={VALIDATIONS.name} label={t('general.full_name')} type='text' control={control} />
               <Input name={'email'} rules={VALIDATIONS.email} label={t('general.email')} type='text' control={control} />
               <CustomReactSelect
                 name={'country'}
-                rules={VALIDATIONS.required}
+                // rules={VALIDATIONS.required}
                 label={t('general.country')}
                 placeholder={`${t('general.country')}...`}
                 options={countryOptions}
                 control={control}
               />
+
+              <Select
+                name={'country2'}
+                // rules={VALIDATIONS.required}
+                label={t('general.country_native')}
+                placeholder={`${t('general.country')}...`}
+                options={countryOptions}
+                control={control}
+              />
+              <ColorPickerWithPreview
+                name='identity_color'
+                label={t('general.select_the_store_identity_color')}
+                rules={VALIDATIONS.required}
+                control={control}
+              />
+              <div className='relative flex items-center justify-between gap-5'>
+                <div className='flex-1'>
+                  {/* <CustomDataPicker
+                    control={control}
+                    name='start_date'
+                    maxDate={watch('end_date')}
+                    label='Voting start Date'
+                    placeholder='Voting start Date'
+                    rules={VALIDATIONS.required}
+                  /> */}
+                  <DatePicker
+                    control={control}
+                    name='start_date'
+                    maxDate={watch('end_date')}
+                    label='Voting start Date'
+                    placeholder='Voting start Date'
+                    rules={VALIDATIONS.required}
+                  />
+                </div>
+                <div className='flex-1'>
+                  <CustomDataPicker
+                    control={control}
+                    name='end_date'
+                    minDate={watch('start_date')}
+                    label='Voting end Date'
+                    placeholder='Voting end Date'
+                    rules={VALIDATIONS.required}
+                  />
+                </div>
+              </div>
               <Input name={'password'} rules={VALIDATIONS.password} label={t('general.password')} type='password' control={control} />
               <Input
                 name={'confirmPassword'}
@@ -120,6 +165,7 @@ export default function FormModal() {
                 type='password'
                 control={control}
               />
+
               <Button text={t('general.create_account')} type='submit' isProcessing={isProcessing} />
               <p className='text-center'>
                 <span className='text-base font-normal capitalize  leading-none tracking-tight text-gray-700 dark:text-gray-400'>

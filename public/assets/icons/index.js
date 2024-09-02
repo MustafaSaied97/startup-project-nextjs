@@ -23,6 +23,8 @@ export { default as DarkMode } from './DarkMode.jsx';
 export { default as EmptyStar } from './EmptyStar.jsx';
 export { default as HalfStar } from './HalfStar.jsx';
 export { default as FilledStar } from './FilledStar.jsx';
+export { default as Upload } from './Upload.jsx';
+export { default as ColorPalette } from './ColorPalette.jsx';
 
 
 
