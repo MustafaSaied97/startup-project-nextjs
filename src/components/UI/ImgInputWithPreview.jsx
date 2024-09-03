@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { CustomImg } from '@/components';
+import { CustomImg } from '../generic';
 import { useTranslations } from 'next-intl';
 import { convertImgFileToUrl, notify } from '@/utils';
 import { useController } from 'react-hook-form';
