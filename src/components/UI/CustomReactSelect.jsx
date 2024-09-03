@@ -4,6 +4,7 @@ import React from 'react';
 import { useController } from 'react-hook-form';
 import ReactSelect from './ReactSelect';
 import * as Icons from '@/assets/icons';
+import FieldErrorMsg from './FieldErrorMsg';
 
 export default function CustomReactSelect({ control, label, name, options, rules, ...inputProps }) {
   const {
@@ -41,13 +42,7 @@ export default function CustomReactSelect({ control, label, name, options, rules
         value={field.value}
         {...inputProps}
       />
-      {/* for errors */}
-      {errors?.[name] && (
-        <p className=' flex items-center gap-1 text-[clamp(.5rem,_100%,_0.875rem)]  font-normal text-[--canceled-clr]'>
-          <Icons.Danger />
-          {errors?.[name].message}
-        </p>
-      )}
+      {errors?.[name] && <FieldErrorMsg message={errors?.[name].message} />}
     </fieldset>
   );
 }

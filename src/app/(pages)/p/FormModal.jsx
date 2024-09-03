@@ -1,5 +1,5 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { VALIDATIONS, notify } from '@/utils';
 import { useTranslations } from 'next-intl';
@@ -56,6 +56,12 @@ export default function FormModal() {
   const onSubmit = async (fromData) => {
     console.log('fromData', fromData);
   };
+
+  useEffect(() => {
+    if (isModalOpen) return;
+    reset();
+  }, [isModalOpen]);
+
   return (
     <>
       {isClient && (
@@ -69,9 +75,7 @@ export default function FormModal() {
           onClose={() => setIsModalOpen(false)}
           style={{ maxHeight: '100vh', maxWidth: '700px', backgroundColor: 'var(--pr-bg)', color: 'var(--pr-text)' }}
         >
-          <Modal.Header
-          //className='-mb-2 flex justify-end'
-          />
+          <Modal.Header className='-mb-2 flex justify-end' />
           <Modal.Body>
             <form onSubmit={handleSubmit(onSubmit)} action='' className='flex w-full flex-col gap-3'>
               <h4 className=' text-2xl font-semibold'>{t('general.create_account_title')}</h4>
@@ -106,7 +110,7 @@ export default function FormModal() {
               <Input name={'email'} rules={VALIDATIONS.email} label={t('general.email')} type='text' control={control} />
               <CustomReactSelect
                 name={'country'}
-                // rules={VALIDATIONS.required}
+                rules={VALIDATIONS.required}
                 label={t('general.country')}
                 placeholder={`${t('general.country')}...`}
                 options={countryOptions}
@@ -115,7 +119,7 @@ export default function FormModal() {
 
               <Select
                 name={'country2'}
-                // rules={VALIDATIONS.required}
+                rules={VALIDATIONS.required}
                 label={t('general.country_native')}
                 placeholder={`${t('general.country')}...`}
                 options={countryOptions}

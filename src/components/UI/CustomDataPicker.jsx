@@ -5,15 +5,34 @@ import moment from 'moment';
 import { ar } from 'date-fns/locale';
 import { Modal } from '@/components/UI';
 import { useController } from 'react-hook-form';
-import * as Icons from '@/assets/icons';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-const CustomDataPicker = ({ control, name = 'date', floatingLabel, rules, label, minDate, maxDate, placeholder, dateFormat = 'DD/MM/YYYY' }) => {
+import FieldErrorMsg from './FieldErrorMsg';
+
+const originalDateFormat = 'ddd MMM DD YYYY HH:mm:ss [GMT]Z'; // date format of Calendar
+const CustomDataPicker = ({
+  control,
+  name = 'date',
+  floatingLabel,
+  rules,
+  label,
+  minDate,
+  maxDate,
+  placeholder,
+  returnedDateFormat = 'DD/MM/YYYY',
+  displayedDateFormat = 'DD/MM/YYYY',
+}) => {
   const [showCalendar, setShowCalendar] = useState(false);
   const {
     field,
     formState: { errors },
   } = useController({ control, name, rules });
+
+  function convertDate(date, inputFormat, outputFormat) {
+    const parsedDate = moment(date, inputFormat).format(outputFormat);
+    return parsedDate == 'Invalid date' ? null : parsedDate;
+  }
+
   return (
     <>
       <fieldset className='h relative w-full'>
@@ -27,23 +46,17 @@ const CustomDataPicker = ({ control, name = 'date', floatingLabel, rules, label,
           onBlur={field.onBlur}
           type='button'
           onClick={() => setShowCalendar((prev) => !prev)}
-          className={`general-input  relative h-14 w-full text-start ${errors?.[name] ? 'border-[var(--error-color)]' : ''}`}
+          className={`general-input  relative  w-full text-start ${errors?.[name] ? 'border-[var(--error-clr)] bg-[var(--bg-error-clr)]' : ''}`}
         >
           {floatingLabel && (
             <label className={` ${field.value ? 'data-exist-or-focused' : 'no-data'} `} htmlFor={name}>
               {floatingLabel}
             </label>
           )}
-          {placeholder && !field?.value && <span className='responsive-text h-full w-full text-gray-500'>{placeholder}</span>}
-          {field?.value && field?.value}
+          {placeholder && !field?.value && <span className=' h-full w-full text-gray-500'>{placeholder}</span>}
+          {field?.value && convertDate(field?.value, returnedDateFormat, displayedDateFormat)}
         </button>
-        {/* for errors */}
-        {errors?.[name] && (
-          <p className=' flex items-center gap-1 text-[clamp(.5rem,_100%,_0.875rem)]  font-normal text-[--canceled-clr]'>
-            <Icons.Danger />
-            {errors?.[name].message}
-          </p>
-        )}
+        {errors?.[name] && <FieldErrorMsg message={errors?.[name].message} />}
       </fieldset>
 
       {showCalendar && (
@@ -55,16 +68,17 @@ const CustomDataPicker = ({ control, name = 'date', floatingLabel, rules, label,
           <Modal.Body>
             <Calendar
               onBlur={field.onBlur}
-              date={field?.value || new Date()}
+              date={field?.value && convertDate(field?.value, returnedDateFormat, originalDateFormat)}
               onChange={(e) => {
-                field.onChange(moment(e).format(dateFormat));
+                field.onChange(convertDate(e, originalDateFormat, returnedDateFormat));
                 setShowCalendar(false);
               }}
               locale={ar}
               color='#26C0FF'
               backgroundColor='#26C0FF'
               disabledDay={(day) => {
-                return (minDate && day < minDate) || (maxDate && day > maxDate);
+                const dayWithReturnedDateFormat = convertDate(day, originalDateFormat, returnedDateFormat);
+                return (minDate && dayWithReturnedDateFormat < minDate) || (maxDate && dayWithReturnedDateFormat > maxDate);
               }}
             />
           </Modal.Body>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useController } from 'react-hook-form';
-import * as Icons from '@/assets/icons';
+import FieldErrorMsg from './FieldErrorMsg';
 
 const Select = ({ control, name, rules, floatingLabel, label, placeholder, options, valueType = 'string' }) => {
   const {
@@ -28,7 +28,7 @@ const Select = ({ control, name, rules, floatingLabel, label, placeholder, optio
           }}
           id={name}
           value={field.value || ''} // Ensure the placeholder is shown for undefined, '' or null
-          className={`general-input w-full appearance-none  ${!field?.value ? 'text-[var(--gray-text-color)]' : ''} ${errors?.[name] ? 'border-red-500' : ''}`}
+          className={`general-input w-full appearance-none  ${!field?.value ? 'text-[var(--gray-text-color)]' : ''} ${errors?.[name] ? 'border-[var(--error-clr)]' : ''}`}
         >
           <option className='hidden text-[var(--gray-text-color)]' value='' disabled>
             {!floatingLabel && placeholder}
@@ -55,13 +55,7 @@ const Select = ({ control, name, rules, floatingLabel, label, placeholder, optio
           </label>
         )}
       </div>
-      {/* for errors */}
-      {errors?.[name] && (
-        <p className=' flex items-center gap-1 text-[clamp(.5rem,_100%,_0.875rem)]  font-normal text-[--canceled-clr]'>
-          <Icons.Danger />
-          {errors?.[name].message}
-        </p>
-      )}
+      {errors?.[name] && <FieldErrorMsg message={errors?.[name].message} />}
     </fieldset>
   );
 };

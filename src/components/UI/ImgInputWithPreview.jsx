@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { convertImgFileToUrl, notify } from '@/utils';
 import { useController } from 'react-hook-form';
 import * as Icons from '@/assets/icons';
+import FieldErrorMsg from './FieldErrorMsg';
 
 export default function ImgInputWithPreview({ control, name, rules, label }) {
   const allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
@@ -115,12 +116,7 @@ export default function ImgInputWithPreview({ control, name, rules, label }) {
           </figure>
         )}
       </div>
-      {errors?.[name] && (
-        <p className='flex items-center gap-1 text-[clamp(.5rem,_100%,_0.875rem)] font-normal text-[--canceled-clr]'>
-          <Icons.Danger />
-          {errors[name].message}
-        </p>
-      )}
+      {errors?.[name] && <FieldErrorMsg message={errors?.[name].message} />}
     </fieldset>
   );
 }

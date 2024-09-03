@@ -1,6 +1,5 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
-import * as Icons from '@/assets/icons';
+import React from 'react';
 import { useController } from 'react-hook-form';
 import moment from 'moment';
 import FieldErrorMsg from './FieldErrorMsg';
@@ -23,17 +22,11 @@ const DatePicker = ({
     field,
     formState: { errors },
   } = useController({ control, name, rules });
-  
-  const dateInputRef = useRef();
 
   function convertDate(date, inputFormat, outputFormat) {
     const parsedDate = moment(date, inputFormat).format(outputFormat);
     return parsedDate == 'Invalid date' ? null : parsedDate;
   }
-
-  useEffect(() => {
-    console.log(name, field.value);
-  }, [field?.value]);
 
   return (
     <fieldset className='relative flex flex-col'>
@@ -43,26 +36,10 @@ const DatePicker = ({
         </label>
       )}
       <div className='relative w-full'>
-        <button
-          id='date-calendar'
-          onBlur={field.onBlur}
-          type='button'
-          onClick={() => dateInputRef.current.showPicker()}
-          className={`general-input  relative  w-full text-start ${errors?.[name] ? 'border-[var(--error-clr)] bg-[var(--bg-error-clr)]' : ''}`}
-        >
-          {floatingLabel && (
-            <label className={` ${field.value ? 'data-exist-or-focused' : 'no-data'} `} htmlFor={name}>
-              {floatingLabel}
-            </label>
-          )}
-          {placeholder && !field?.value && <span className=' h-full w-full text-gray-500'>{placeholder}</span>}
-          {field?.value && convertDate(field?.value, returnedDateFormat, displayedDateFormat)}
-        </button>
         <input
           type='date'
           id={name}
           {...field}
-          ref={dateInputRef}
           value={field?.value && convertDate(field?.value, returnedDateFormat, originalDateFormat)}
           onChange={(e) => {
             const selectedDate = e.target.value;
@@ -70,7 +47,8 @@ const DatePicker = ({
           }}
           min={convertDate(minDate, returnedDateFormat, originalDateFormat)} // Set the minimum selectable date
           max={convertDate(maxDate, returnedDateFormat, originalDateFormat)}
-          className={`collapse absolute bottom-0 start-0 -z-10 appearance-none `}
+          className={`general-input ${errors?.[name] ? 'border-[var(--error-clr)] bg-[var(--bg-error-clr)]' : ''}`}
+          placeholder={placeholder}
         />
         {floatingLabel && (
           <label
@@ -81,7 +59,6 @@ const DatePicker = ({
           </label>
         )}
       </div>
-
       {errors?.[name] && <FieldErrorMsg message={errors?.[name].message} />}
     </fieldset>
   );

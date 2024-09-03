@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useController } from 'react-hook-form';
 import * as Icons from '@/assets/icons';
+import FieldErrorMsg from './FieldErrorMsg';
 
 export default function Input({ control, floatingLabel, type = 'text', label, name, rules, className = '', ...inputProps }) {
   const [showPass, setShowPass] = useState(false);
@@ -27,7 +28,7 @@ export default function Input({ control, floatingLabel, type = 'text', label, na
           id={name}
           name={name}
           type={showPass ? 'text' : type}
-          className={`general-input peer block h-full w-full ${floatingLabel ? 'placeholder-transparent' : ''} ${errors?.[name] ? 'border-[--main-clr]  bg-[#f11237]/5 ' : ''}  ${className}`}
+          className={`general-input peer block h-full w-full ${floatingLabel ? 'placeholder-transparent' : ''} ${errors?.[name] ? 'border-[var(--error-clr)] bg-[var(--bg-error-clr)]' : ''}  ${className}`}
           placeholder={label || '...'}
           {...inputProps}
         />
@@ -47,13 +48,7 @@ export default function Input({ control, floatingLabel, type = 'text', label, na
           </button>
         )}
       </div>
-      {/* for errors */}
-      {errors?.[name] && (
-        <p className=' flex items-center gap-1 text-[clamp(.5rem,_100%,_0.875rem)]  font-normal text-[--canceled-clr]'>
-          <Icons.Danger />
-          {errors?.[name].message}
-        </p>
-      )}
+      {errors?.[name] && <FieldErrorMsg message={errors?.[name].message} />}
     </fieldset>
   );
 }

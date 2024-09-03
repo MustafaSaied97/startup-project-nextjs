@@ -2,12 +2,14 @@
 import React from 'react';
 import { useController } from 'react-hook-form';
 import * as Icons from '@/assets/icons';
+import FieldErrorMsg from './FieldErrorMsg';
 
 export default function ColorPickerWithPreview({ label, control, name = 'color', rules = {} }) {
   const {
     field,
-    fieldState: { error },
-  } = useController({ name, control, rules });
+    formState: { errors },
+  } = useController({ control, name, rules });
+  console.log('errors', errors);
   return (
     <fieldset>
       {label && (
@@ -22,13 +24,7 @@ export default function ColorPickerWithPreview({ label, control, name = 'color',
         </label>
         {field?.value && <input type='color' value={field?.value} disabled className={`block h-9 w-9 `} />}
       </div>
-      {/* for errors */}
-      {error && (
-        <p className=' flex items-center gap-1 text-[clamp(.5rem,_100%,_0.875rem)] font-normal text-[--canceled-clr]'>
-          <Icons.Danger />
-          {error?.message}
-        </p>
-      )}
+      {errors?.[name] && <FieldErrorMsg message={errors?.[name].message} />}
     </fieldset>
   );
 }
