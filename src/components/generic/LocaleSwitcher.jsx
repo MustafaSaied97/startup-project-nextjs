@@ -4,15 +4,20 @@ import useLocale from '@/hooks/useLocale';
 import { LOCALE_COOKIE_NAME, localeNames, locales } from '@/plugins/i18n.js';
 import { useState } from 'react';
 import { setCookies } from '@/utils/cookies-action';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function LocaleSwitcher() {
   const { locale } = useLocale();
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+  const pathName = usePathname();
 
   const switchLocale = (e) => {
     const newLocale = e.target.getAttribute('name');
     if (locale == newLocale) return;
     setCookies({ name: LOCALE_COOKIE_NAME, value: newLocale });
+    router.replace(pathName);
+    router.refresh();
   };
 
   return (
