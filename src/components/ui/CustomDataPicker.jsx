@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Calendar } from 'react-date-range';
 import moment from 'moment';
 import { ar } from 'date-fns/locale';
-import { Modal } from '@/components/UI';
+import { Modal } from '@/components/ui';
 import { useController } from 'react-hook-form';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file

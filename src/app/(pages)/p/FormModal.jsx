@@ -15,7 +15,7 @@ import {
   ColorPickerWithPreview,
   CustomDataPicker,
   DatePicker,
-} from '@/components/UI';
+} from '@/components/ui';
 import useLocale from '@/hooks/useLocale';
 import Link from 'next/link';
 import { useClient } from '@/hooks';

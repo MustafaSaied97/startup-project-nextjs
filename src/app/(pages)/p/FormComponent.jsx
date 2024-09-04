@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { VALIDATIONS } from '@/utils';
-import { Button, Input } from '@/components/UI';
+import { Button, Input } from '@/components/ui';
 import useVaildations from '@/hooks/useVaildations';
 import useLocale from '@/hooks/useLocale';
 export default function FormComponent() {

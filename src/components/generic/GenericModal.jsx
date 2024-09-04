@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Modal } from '../UI';
+import { Modal } from '../ui';
 
 export default function GenericModal() {
   const [isModalOpen, setIsModalOpen] = useState(false);

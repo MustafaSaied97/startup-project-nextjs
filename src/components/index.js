@@ -1,3 +1,3 @@
 export * from './generic';
 export * from './website';
-export * from './UI';
+export * from './ui';
