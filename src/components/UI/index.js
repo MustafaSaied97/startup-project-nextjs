@@ -1,4 +1,11 @@
-export { default as TextInput } from './TextInput.jsx';
+export { default as Input } from './Input.jsx';
 export { default as DropdownList } from './DropdownList.jsx';
 export { default as Modal } from './Modal.jsx';
 export { default as Slider } from './Slider.jsx';
+export { default as CustomReactSelect } from './CustomReactSelect.jsx';
+export { default as Button } from './Button.jsx';
+export { default as Select } from './Select.jsx';
+export { default as ImgInputWithPreview } from './ImgInputWithPreview.jsx';
+export { default as ColorPickerWithPreview } from './ColorPickerWithPreview.jsx';
+export { default as CustomDataPicker } from './CustomDataPicker.jsx';
+export { default as DatePicker } from './DatePicker.jsx';

@@ -9,8 +9,6 @@ import { themeInit } from '@/state-mangement/features/themeSlice';
 import { initAuth } from '@/state-mangement/features/authSlice';
 
 function StoreInitiatializton({ children }) {
-  //initialize all store state the came from localstorage and cookies {client side}
-
   const dispatch = useDispatch();
   useLayoutEffect(() => {
     dispatch(initAuth());

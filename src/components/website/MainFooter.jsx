@@ -12,7 +12,7 @@ import useLocale from '@/hooks/useLocale';
 export default function MainFooter() {
   const layoutData = useSelector((state) => state.layout.layoutData);
 
-  const locale = useLocale();
+  const { locale } = useLocale();
   const t = useTranslations();
   const pathname = usePathname();
   const pages = useMemo(() => [

@@ -16,7 +16,7 @@ import 'swiper/css/pagination';
 import useLocale from '@/hooks/useLocale';
 
 export default function Slider() {
-  const locale = useLocale();
+  const { locale } = useLocale();
   const items = [
     { name: 'item' },
     { name: 'item' },
@@ -33,7 +33,6 @@ export default function Slider() {
 
   const [swiperInstance, setSwiperInstance] = useState();
   const [activeIndex, setActiveIndex] = useState();
-
 
   return (
     <div className='relative flex h-28 justify-center'>

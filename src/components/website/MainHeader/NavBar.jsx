@@ -24,7 +24,7 @@ export default function NavBar() {
     { name: 'referrals', path: ROUTES_PATH?.website?.referrals },
   ];
   return (
-    <nav className='app-container flex min-h-[80px] w-full  flex-wrap items-center  justify-between  gap-3  bg-white py-2 shadow-md transition-all duration-200 dark:bg-[#1d2023] lg:shadow-none '>
+    <nav className='app-container flex min-h-[80px] w-full  flex-wrap items-center  justify-between  gap-3  bg-[--tr-bg] py-2 shadow-md transition-all duration-200  lg:shadow-none '>
       <button className='block lg:hidden'>
         <Icons.Burger />
       </button>

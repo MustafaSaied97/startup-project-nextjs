@@ -35,7 +35,7 @@ export default function HeaderSearch() {
         onChange={onChangeSearch}
         value={searchInput}
         type='search'
-        className='w-full rounded-s-[5px]  border border-e-0 border-gray-300 bg-white px-3 py-2.5 text-black outline-none dark:bg-[#1d2023] dark:text-white xl:px-4 2xl:px-5 '
+        className='w-full rounded-s-[5px]  border border-e-0 border-gray-300 bg-transparent px-3 py-2.5  outline-none   xl:px-4 2xl:px-5 '
       />
       <button type='submit' className='w-[50px] rounded-e-[5px]  border  border-s-0 border-gray-300 bg-[--sec-bg] p-2.5 text-sm text-gray-900 '>
         <Icons.Search />

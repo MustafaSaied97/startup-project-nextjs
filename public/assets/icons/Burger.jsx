@@ -1,11 +1,7 @@
 'use client';
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 export default function Burger({ color }) {
-  const currentTheme = useSelector((state) => state.theme.currentTheme);
-  const defaultColor = currentTheme === 'light' ? '#969696' : '#CDCDCD';
-  color = color || defaultColor;
   return (
     <svg width='24px' height='24px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' stroke={color}>
       <g id='SVGRepo_bgCarrier' strokeWidth={0} />
