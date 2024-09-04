@@ -1,4 +1,43 @@
 {
-  "home":"Home"
+  "general": {
+    "validation_msg": {
+      "maximum_size_of_uploading_image": "maximum size of uploading image is {size}",
+      "ip_address": "Please enter a valid IP address.",
+      "port": "this field must be a valid port",
+      "required": "this field is required",
+      "whitespace": "the field should not contain whitespace",
+      "invalid_date_should_be_futuristic": "Date must be later than today.",
+      "invalid_less_than_zero": "Number should be more than zero",
+      "invalid_greater_than_hundred": "Number should be less than a hundred",
+      "email": "value is not a valid email address",
+      "password": "the password must contain at least one capital letter and a number",
+      "confirm_password": "The value must be equal to the password value",
+      "phone": "Phone number must be at least 7 digits",
+      "website_phone": "Phone number must be 11 digits",
+      "number": "this field must be only a numeric value",
+      "no_arabic": "must not contain Arabic characters",
+      "between": "the value must be between",
+      "min": "the minimum length of characters allowed is",
+      "max": "the maximum length of characters allowed is",
+      "location": "must be a link and from google map",
+      "url": "Invalid url",
+      "telegram": "Invalid username",
 
+      "no_symbols": "The value must not contain symbols",
+      "no_numbers": "The value must not contain numbers",
+      "invalid_number": "invalid phone number",
+      "branch_choice_required": "branch choice is required",
+      "attributs_choice_required": "attributs  choice is required",
+      "reason_choice_required": "Choice of one of the reasons is required",
+      "reason_msg_required": "You must write your opinion about the product",
+      "numbers": "Only numbers are allowed",
+      "ip": "Invalid IP address",
+      "char_count": "The field must be between 5 - 2000 characters",
+      "precentage_numbers": "Only numbers are allowed up to 100",
+      "minimum_stock": "It must be less than the number of products available.",
+      "min_price": "It must be equal to or greater than the proposed price",
+      "min_withdrawal_request": "It must be equal to or greater than  25 $"
+    }
+  },
+  "home": "Home"
 }
