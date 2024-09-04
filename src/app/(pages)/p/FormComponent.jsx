@@ -5,11 +5,7 @@ import { useForm } from 'react-hook-form';
 import { VALIDATIONS } from '@/utils';
 import { Button, Input } from '@/components/ui';
 import useVaildations from '@/hooks/useVaildations';
-import useLocale from '@/hooks/useLocale';
 export default function FormComponent() {
-  const vaildaions = useVaildations();
-  const { locale } = useLocale();
-
   const {
     control,
     handleSubmit,
@@ -18,11 +14,8 @@ export default function FormComponent() {
   } = useForm({
     defaultValues: { email: '', password: '' },
   });
+  const vaildaions = useVaildations(trigger, errors);
 
-  useEffect(() => {
-    if (Object.keys(errors).length == 0) return;
-    trigger();
-  }, [locale]);
 
   const onSubmit = async (fromData) => {
     console.table(fromData);

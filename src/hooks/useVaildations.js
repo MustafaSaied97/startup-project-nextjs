@@ -1,8 +1,16 @@
 import { useTranslations } from 'next-intl';
+import { useEffect } from 'react';
+import useLocale from './useLocale';
 const ipPattern = /^(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}$/;
-
-export default function useVaildations() {
+export default function useVaildations(trigger, errors) {
   const t = useTranslations();
+  const { locale } = useLocale();
+  useEffect(() => {
+    if (errors && Object.keys(errors).length > 0) {
+      trigger(); // Only trigger if there are existing errors
+    }
+  }, [locale, errors, trigger]);
+
   return {
     required: {
       required: {
