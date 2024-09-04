@@ -9,6 +9,7 @@ import { apis } from '@/services/apis';
 import { useDispatch } from 'react-redux';
 import { storeAuth } from '@/state-mangement/features/authSlice';
 import { notify } from '@/utils';
+import { Button } from '@/components/UI';
 
 export default function VerificationPage() {
   const t = useTranslations();
@@ -50,9 +51,7 @@ export default function VerificationPage() {
       <div className='mt-8 flex w-full flex-col items-center gap-20'>
         <Icons.Security size={150} />
         <h4 className=' text-2xl font-semibold text-gray-700'>{t('general.continue_verification')}</h4>
-        <button disabled={isProcessing} onClick={handleVerification} className='h-14 w-full rounded-lg bg-rose-600 text-center text-white' type='submit'>
-          {isProcessing ? t('general.is_processing') : t('general.next')}
-        </button>
+        <Button text={t('general.next')} onClick={handleVerification} isProcessing={isProcessing} />
       </div>
     </section>
   );

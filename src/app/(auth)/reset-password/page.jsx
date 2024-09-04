@@ -1,31 +1,20 @@
 'use client';
-import * as Icons from '@/assets/icons';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { VALIDATIONS, notify } from '@/utils';
 import { ROUTES_PATH } from '@/utils/routes';
 import { useTranslations } from 'next-intl';
 import { apis } from '@/services/apis';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { CustomSelect, Input } from '@/components';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { Button, Input } from '@/components/UI';
 
 export default function ResetPasswordPage() {
   const t = useTranslations();
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
-
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
   const router = useRouter();
-  const {
-    control,
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-    watch, //to get specfic value of key in form by --> call watch('key')
-  } = useForm({
+  const { control, handleSubmit, watch } = useForm({
     defaultValues: {
       password: '',
       confirmPassword: '',
@@ -51,7 +40,7 @@ export default function ResetPasswordPage() {
     }
   };
 
-  //guard to not enter the page without sending token in url
+  // guard to not enter the page without sending token in url
   if (!token) {
     return router.replace('/not-authorized');
   }
@@ -60,51 +49,15 @@ export default function ResetPasswordPage() {
       <form onSubmit={handleSubmit(onSubmit)} action='' className='mt-8 flex w-full flex-col gap-3'>
         <h4 className=' text-2xl font-semibold'>{t('general.reset_password_title')}</h4>
         <p className='mb-7 text-base font-normal capitalize leading-none text-slate-500'>{t('general.reset_password_hint')}</p>
+        <Input name={'password'} rules={VALIDATIONS.password} label={t('general.new_password')} type='password' control={control} />
         <Input
-          control={control}
-          label={'new_password'}
-          name={'password'}
-          type={showPassword ? 'text' : 'password'}
-          placeholder={'password'}
-          rules={VALIDATIONS.password}
-          autoComplete={'true'}
-          inputIcon={{
-            position: 'start',
-            icon: (
-              <button
-                type='button'
-                onClick={() => setShowPassword(!showPassword)}
-                className='absolute inset-y-0 end-3 flex cursor-pointer  items-center pe-3.5 '
-              >
-                {showPassword ? <Icons.Eye /> : <Icons.EyeDisable />}
-              </button>
-            ),
-          }}
-        />
-        <Input
-          control={control}
-          label={'new_confirm_password'}
           name={'confirmPassword'}
-          type={showPassword ? 'text' : 'password'}
-          placeholder={'confirmPassword'}
-          rules={{ ...VALIDATIONS.confirmPassword({ passwordVal: watch('password') }) }}
-          autoComplete={'true'}
-          inputIcon={{
-            position: 'start',
-            icon: (
-              <button
-                type='button'
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className='absolute inset-y-0 end-3 flex cursor-pointer  items-center pe-3.5 '
-              >
-                {showConfirmPassword ? <Icons.Eye /> : <Icons.EyeDisable />}
-              </button>
-            ),
-          }}
+          rules={VALIDATIONS.confirmPassword({ passwordVal: watch('password') })}
+          label={t('general.new_confirm_password')}
+          type='password'
+          control={control}
         />
-        <button className='h-14 w-full rounded-lg bg-rose-600 text-center text-white' type='submit'>
-          {isProcessing ? t('general.is_processing') : t('general.confirm')}
-        </button>
+        <Button text={t('general.confirm')} type='submit' isProcessing={isProcessing} />
       </form>
     </section>
   );
