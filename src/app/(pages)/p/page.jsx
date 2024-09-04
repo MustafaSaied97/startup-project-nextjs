@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTranslations } from 'next-intl';
 import * as Icons from '@/assets/icons';
 import FormModal from './FormModal';
+import FormComponent from './FormComponent';
 export default function WhishlistPage() {
   const t = useTranslations();
   return (
@@ -13,6 +14,7 @@ export default function WhishlistPage() {
         <Icons.EmptyWishlist color='red' />
       </div>
       <FormModal />
+      <FormComponent />
     </section>
   );
 }
