@@ -16,7 +16,7 @@ export default function FormComponent() {
     trigger,
     formState: { errors },
   } = useForm({
-    defaultValues: { email: '', passowrd: '' },
+    defaultValues: { email: '', password: '' },
   });
 
   useEffect(() => {
@@ -24,7 +24,9 @@ export default function FormComponent() {
     trigger();
   }, [locale]);
 
-  const onSubmit = async (fromData) => {};
+  const onSubmit = async (fromData) => {
+    console.table(fromData);
+  };
   return (
     <section className='flex w-full  items-center  justify-center  '>
       <form onSubmit={handleSubmit(onSubmit)} action='' className='mt-8 flex w-full flex-col gap-3'>
