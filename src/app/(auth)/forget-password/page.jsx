@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import useCounter from '@/hooks/useCounter';
 import { apis } from '@/services/apis';
 import { useState } from 'react';
-import { Button, Input } from '@/components/UI';
+import { Button, Input } from '@/components/ui';
 
 export default function ForgetPasswordPage() {
   const t = useTranslations();

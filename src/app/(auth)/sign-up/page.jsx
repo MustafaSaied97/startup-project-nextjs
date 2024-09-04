@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 import useRequest from '@/hooks/useRequest';
 import { apis } from '@/services/apis';
 import { useSearchParams } from 'next/navigation';
-import { Button, CustomReactSelect, Input } from '@/components/UI';
+import { Button, CustomReactSelect, Input } from '@/components/ui';
 import useLocale from '@/hooks/useLocale';
 
 export default function SignUpPage() {

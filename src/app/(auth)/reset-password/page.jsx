@@ -6,7 +6,7 @@ import { ROUTES_PATH } from '@/utils/routes';
 import { useTranslations } from 'next-intl';
 import { apis } from '@/services/apis';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Button, Input } from '@/components/UI';
+import { Button, Input } from '@/components/ui';
 
 export default function ResetPasswordPage() {
   const t = useTranslations();

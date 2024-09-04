@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 import { apis } from '@/services/apis';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeAuth } from '@/state-mangement/features/authSlice';
-import { Button, Input } from '@/components/UI';
+import { Button, Input } from '@/components/ui';
 import Link from 'next/link';
 
 

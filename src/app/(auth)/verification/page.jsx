@@ -9,7 +9,7 @@ import { apis } from '@/services/apis';
 import { useDispatch } from 'react-redux';
 import { storeAuth } from '@/state-mangement/features/authSlice';
 import { notify } from '@/utils';
-import { Button } from '@/components/UI';
+import { Button } from '@/components/ui';
 
 export default function VerificationPage() {
   const t = useTranslations();
