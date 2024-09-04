@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import useCounter from '@/hooks/useCounter';
 import { apis } from '@/services/apis';
 import { useState } from 'react';
-import { CustomSelect, TextInput } from '@/components';
+import { CustomSelect, Input } from '@/components';
 
 export default function ForgetPasswordPage() {
   const t = useTranslations();
@@ -41,7 +41,7 @@ export default function ForgetPasswordPage() {
       <form onSubmit={handleSubmit(onSubmit)} action='' className='mt-8 flex w-full flex-col gap-3'>
         <h4 className=' text-2xl font-semibold'>{'general.forget_password_title'}</h4>
         <p className='mb-7 text-base font-normal capitalize leading-none text-slate-500'>{'general.forget_password_hint'}</p>
-        <TextInput
+        <Input
           control={control}
           label={'email'}
           name={'email'}

@@ -11,7 +11,7 @@ import { useTranslations } from 'next-intl';
 import { apis } from '@/services/apis';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeAuth } from '@/state-mangement/features/authSlice';
-import { TextInput } from '@/components/UI';
+import { Input } from '@/components/UI';
 
 export default function LoginPage() {
   const t = useTranslations();
@@ -61,7 +61,7 @@ export default function LoginPage() {
       <form onSubmit={handleSubmit(onSubmit)} action='' className='mt-8 flex w-full flex-col gap-3'>
         <h4 className='text-2xl font-semibold'>{'welcome_back'} 👋</h4>
         <p className='mb-7 text-base font-normal capitalize leading-none text-slate-500'>{'login_title'}</p>
-        <TextInput
+        <Input
           control={control}
           label={'email'}
           name={'email'}
@@ -70,7 +70,7 @@ export default function LoginPage() {
           rules={VALIDATIONS.email}
           autoComplete={'true'}
         />
-        <TextInput
+        <Input
           control={control}
           label={'password'}
           name={'password'}

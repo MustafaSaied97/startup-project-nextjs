@@ -3,7 +3,7 @@ import * as Icons from '@/assets/icons';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { VALIDATIONS, notify } from '@/utils';
-import { CustomSelect, TextInput } from '@/components';
+import { CustomSelect, Input } from '@/components';
 import Link from 'next/link';
 import { ROUTES_PATH } from '@/utils/routes';
 import { useTranslations } from 'next-intl';
@@ -110,7 +110,7 @@ export default function SignUpPage() {
             </label>
           </div>
         </div>
-        <TextInput
+        <Input
           control={control}
           label={'fullName'}
           name={'emfullNameail'}
@@ -119,7 +119,7 @@ export default function SignUpPage() {
           rules={VALIDATIONS.name}
           autoComplete={'true'}
         />
-        <TextInput
+        <Input
           control={control}
           label={'email'}
           name={'email'}
@@ -162,7 +162,7 @@ export default function SignUpPage() {
             </p>
           )}
         </div>
-        <TextInput
+        <Input
           control={control}
           label={'password'}
           name={'password'}
@@ -183,7 +183,7 @@ export default function SignUpPage() {
             ),
           }}
         />
-        <TextInput
+        <Input
           control={control}
           label={'confirmPassword'}
           name={'confirmPassword'}

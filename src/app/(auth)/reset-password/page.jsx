@@ -7,7 +7,7 @@ import { ROUTES_PATH } from '@/utils/routes';
 import { useTranslations } from 'next-intl';
 import { apis } from '@/services/apis';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { CustomSelect, TextInput } from '@/components';
+import { CustomSelect, Input } from '@/components';
 
 export default function ResetPasswordPage() {
   const t = useTranslations();
@@ -60,7 +60,7 @@ export default function ResetPasswordPage() {
       <form onSubmit={handleSubmit(onSubmit)} action='' className='mt-8 flex w-full flex-col gap-3'>
         <h4 className=' text-2xl font-semibold'>{t('general.reset_password_title')}</h4>
         <p className='mb-7 text-base font-normal capitalize leading-none text-slate-500'>{t('general.reset_password_hint')}</p>
-        <TextInput
+        <Input
           control={control}
           label={'new_password'}
           name={'password'}
@@ -81,7 +81,7 @@ export default function ResetPasswordPage() {
             ),
           }}
         />
-        <TextInput
+        <Input
           control={control}
           label={'new_confirm_password'}
           name={'confirmPassword'}
