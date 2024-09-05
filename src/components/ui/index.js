@@ -9,3 +9,4 @@ export { default as ImgInputWithPreview } from './ImgInputWithPreview.jsx';
 export { default as ColorPickerWithPreview } from './ColorPickerWithPreview.jsx';
 export { default as CustomDataPicker } from './CustomDataPicker.jsx';
 export { default as DatePicker } from './DatePicker.jsx';
+export { default as LoadMoreButton } from './LoadMoreButton.jsx';
