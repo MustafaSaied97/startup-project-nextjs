@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 import HeaderSearch from './HeaderSearch';
 import { ROUTES_PATH } from '@/utils';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function NavBar() {
@@ -16,7 +16,9 @@ export default function NavBar() {
   const currentTheme = useSelector((state) => state.theme.currentTheme);
   const layoutData = useSelector((state) => state.layout.layoutData);
   const pathname = usePathname;
+  const router = useRouter();
   const dropDownPages = [
+    { name: 'profile', path: '/profile' },
     { name: 'order_history', path: ROUTES_PATH?.website?.orderHistory },
     { name: 'referrals', path: ROUTES_PATH?.website?.referrals },
   ];
@@ -52,7 +54,7 @@ export default function NavBar() {
               >
                 {dropDownPages.map((page, index) => (
                   <li key={index} className={`m-1 cursor-pointer rounded-lg px-2 py-1  hover:bg-slate-300/20  `}>
-                    <button onMouseDown={() => {}} className={` ${pathname == page.path ? 'text-red-500' : ''} `}>
+                    <button onMouseDown={() => {router.push(page.path);}} className={` ${pathname == page.path ? 'text-red-500' : ''} `}>
                       {page.name}
                     </button>
                   </li>

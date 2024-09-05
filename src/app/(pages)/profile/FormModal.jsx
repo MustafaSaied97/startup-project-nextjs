@@ -27,7 +27,8 @@ export default function FormModal() {
   const t = useTranslations();
 
   const [isProcessing, setIsProcessing] = useState(false);
-  const { resData } = useCachedRequest({ queryFn: apis.getCountries, queryKey: 'getCountries' });
+  const { resData } = useCachedRequest({ queryFn: apis.getCountries, queryKey: 'getCountries'  });
+  useEffect(() => {console.log('resData', resData);}, [resData]);
   // const { resData } = useRequest({ queryFn: apis.getCountries, queryKey: 'getCountries', isImmediate: false });
   const countryOptions = useMemo(
     () => (resData ? resData.data.map((country) => ({ value: country.id, label: country?.[`name_${locale}`] })) : []),

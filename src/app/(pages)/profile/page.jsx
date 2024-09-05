@@ -8,7 +8,7 @@ import FormComponent from './FormComponent';
 import useRequest from '@/hooks/useRequest';
 import useCachedRequest from '@/hooks/useCachedRequest';
 import { apis } from '@/services/apis';
-export default function WhishlistPage() {
+export default function ProfilePage() {
   const t = useTranslations();
   // const { resData: req1 } = useRequest({ queryFn: apis.getCountries, queryKey: 'getCountries' });
   const { resData: req1 } = useCachedRequest({ queryFn: apis.getCountries, queryKey: 'getCountries' });

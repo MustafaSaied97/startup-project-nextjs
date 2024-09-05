@@ -4,9 +4,6 @@ import { useTranslations } from 'next-intl';
 import { requestCacheManager } from '@/utils/requestCacheManager';
 
 const ongoingRequests = new Map();
-
-
-
 export default function useCachedRequest({ queryFn = async () => {}, queryKey = '', isImmediate = true }) {
   // Singleton instance of the cache manager
   const cache = requestCacheManager.getInstance();

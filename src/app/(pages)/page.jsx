@@ -1,4 +1,5 @@
 import { GenericModal, Slider } from '@/components';
+import Groups from '@/components/website/Groups';
 import { getTranslations } from 'next-intl/server';
 import React from 'react';
 
@@ -15,6 +16,9 @@ export default async function HomePage() {
       <GenericModal />
       <div className='mt-16'>
         <Slider />
+      </div>
+      <div className='mt-16'>
+        <Groups />
       </div>
     </div>
   );
