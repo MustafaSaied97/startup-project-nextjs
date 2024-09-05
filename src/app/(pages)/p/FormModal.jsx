@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { VALIDATIONS, notify } from '@/utils';
 import { useTranslations } from 'next-intl';
 import useRequest from '@/hooks/useRequest';
+import useRequestCached from '@/hooks/useRequestCached';
 import { apis } from '@/services/apis';
 import {
   Button,
@@ -26,7 +27,8 @@ export default function FormModal() {
   const t = useTranslations();
 
   const [isProcessing, setIsProcessing] = useState(false);
-  const { resData } = useRequest({ queryFn: apis.getCountries, queryKey: 'getCountries' });
+  const { resData } = useRequestCached({ queryFn: apis.getCountries, queryKey: 'getCountries' });
+  // const { resData } = useRequest({ queryFn: apis.getCountries, queryKey: 'getCountries', isImmediate: false });
   const countryOptions = useMemo(
     () => (resData ? resData.data.map((country) => ({ value: country.id, label: country?.[`name_${locale}`] })) : []),
     [resData]
