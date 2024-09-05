@@ -27,7 +27,13 @@ export default function Groups() {
           </div>
         );
       })}
-      <LoadMoreButton onLoadMore={loadMore} hasMore={groupsRes?.current_page < groupsRes?.pages_total} buttonText={t('general.load_more')} />
+      <LoadMoreButton
+        currentPage
+        totalPages
+        onLoadMore={loadMore}
+        hasMore={groupsRes?.current_page < groupsRes?.pages_total}
+        buttonText={t('general.load_more')}
+      />
     </section>
   );
 }

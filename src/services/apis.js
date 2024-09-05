@@ -11,6 +11,9 @@ export const apis = {
   getCountries: () => {
     return withAxios({ url: `/api/countries`, method: 'GET' });
   },
+  getProducts: (options = {}) => {
+    return withAxios({ url: `/api/products${objectToQueryString(options, { isEncoded: false })}`, method: 'GET' });
+  },
 };
 
 
