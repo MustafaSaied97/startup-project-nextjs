@@ -1,11 +1,11 @@
 'use client';
 import React, { useState } from 'react';
 import * as Icons from '@/assets/icons';
-import { useQuery } from '@/hooks';
+import { useUrlQuery } from '@/hooks';
 import { debounceFunc } from '@/utils';
 
 export default function HeaderSearch() {
-  const query = useQuery();
+  const query = useUrlQuery();
   const [searchInput, setSearchInput] = useState(query.get('search') ?? '');
 
   const onChangeSearch = (e) => {
