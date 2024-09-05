@@ -7,10 +7,10 @@ const ongoingRequests = new Map();
 
 
 
-export default function useRequest({ queryFn = async () => {}, queryKey = '', isImmediate = true }) {
-// Singleton instance of the cache manager
+export default function useCachedRequest({ queryFn = async () => {}, queryKey = '', isImmediate = true }) {
+  // Singleton instance of the cache manager
   const cache = requestCacheManager.getInstance();
-  
+
   const isCacheEnabled = Boolean(queryKey); // Check if caching is enabled
   const t = useTranslations();
   const [localResData, setLocalResData] = useState(isCacheEnabled ? cache.get(queryKey) : null); // Use cache data if available
