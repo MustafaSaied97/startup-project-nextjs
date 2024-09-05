@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateCachedState } from '@/state-mangement/features/cachedSlice'; // Import your Redux slice action
+import { useState, useEffect } from 'react';
 
 export default function useCachedState(key, initialValue) {
   const dispatch = useDispatch();
-  // const allCachedValue = useSelector((state) => state.cached.cachedData);
   const cachedValue = useSelector((state) => state.cached.cachedData[key]);
   const [state, setState] = useState(cachedValue ?? initialValue);
 
@@ -12,9 +11,9 @@ export default function useCachedState(key, initialValue) {
     setState(newState);
     dispatch(updateCachedState({ key, value: newState }));
   };
+
   useEffect(() => {
-    //for sync between state abd cachedData
-    setState(cachedValue);
+    setState(cachedValue); // Sync state with Redux cache
   }, [cachedValue]);
 
   return [state, setCachedState];

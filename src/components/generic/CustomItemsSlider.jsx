@@ -5,7 +5,7 @@ import * as Icons from '@/assets/icons';
 
 import useLocale from '@/hooks/useLocale';
 import { debounceFunc } from '@/utils';
-import useCachedState from '@/hooks/useCashedState';
+import useCachedState from '@/hooks/useCachedState';
 
 export default function CustomItemsSlider({ gap = '1', children, id = 0 }) {
   const [disablePrevArrow, setDisablePrevArrow] = useState(false);

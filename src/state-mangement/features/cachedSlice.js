@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  cachedData: {}, // Initial cached data state
+  cachedData: {},
 };
 
 const cachedSlice = createSlice({
@@ -12,9 +12,14 @@ const cachedSlice = createSlice({
       const { key, value } = action.payload;
       state.cachedData[key] = value;
     },
-    // Add more reducer functions as needed
+    clearCache(state) {
+      state.cachedData = {};
+    },
+    removeCacheEntry(state, action) {
+      delete state.cachedData[action.payload];
+    },
   },
 });
 
-export const { updateCachedState } = cachedSlice.actions;
+export const { updateCachedState, clearCache, removeCacheEntry } = cachedSlice.actions;
 export default cachedSlice.reducer;
