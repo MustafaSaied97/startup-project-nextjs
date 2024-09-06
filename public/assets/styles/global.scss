@@ -91,8 +91,8 @@
 
   //generic
   --pr-text: #000000;
-  --error-clr:'red';
-  --bg-error-clr:rgb(241 18 55 / 0.05);
+  --error-clr: 'red';
+  --bg-error-clr: rgb(241 18 55 / 0.05);
   //website
   --pr-bg: white; //pr---primary
   --sec-bg: black; //sec---secondary
@@ -242,47 +242,7 @@ input:-webkit-autofill:focus {
     background-color 600000s 0s,
     color 600000s 0s;
 }
-@media (max-width: 640px) {
-  #reponsive-table table {
-    border-collapse: separate;
-    border-spacing: 0 0.6rem;
-    width: 100%;
-  }
-  #reponsive-table thead {
-    border: none;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-  }
 
-  #reponsive-table tr {
-    border-radius: 10px;
-    border: 1 solid gray;
-    margin: 10px;
-    background: #f9fafba7;
-  }
-
-  #reponsive-table td {
-    font-size: 0.8.5em;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  #reponsive-table td.table-lable::before {
-    content: attr(data-label);
-    position: absolute;
-    inset-inline-start: 10%;
-    color: #94a3b8;
-    float: start;
-    font-weight: bold;
-  }
-}
 .tooltip {
   position: relative;
   display: inline-block;
