@@ -19,35 +19,34 @@ export default function AdvTableList() {
     (!ProductsRes || currentPage != ProductsRes?.current_page) && fetchData({ page: currentPage });
   }, [searchParams, ProductsRes?.current_page]);
 
-  const columns = [
-    { key: 'id', header: 'Order ID', renderCell: (row) => `#${row.id}` },
-    { key: 'status', header: 'Status', renderCell: (row) => row.status },
-    { key: 'date', header: 'Date', renderCell: (row) => row.date },
-    { key: 'total', header: 'Total', renderCell: (row) => `$${row.total}` },
-    { key: 'quantity', header: 'Quantity', renderCell: (row) => `${row.quantity}x` },
+  const headers = [
+    { field: 'id', label: <span className='!text-yellow-500'>Order ID</span> },
+    { field: 'status', label: 'Status' },
+    { field: 'date', label: 'Date' },
+    { field: 'total', label: 'Total' },
+    { field: 'quantity', label: 'Quantity' },
   ];
-  const data = [
-    { id: 1, status: 'Completed', date: '2024-09-01', total: 100, quantity: 2 },
-    { id: 2, status: 'Pending', date: '2024-09-02', total: 150, quantity: 3 },
+
+  const rows = [
+    { id: '1', status: 'Shipped', date: '2023-09-01', total: '100', quantity: '2' },
+    { id: '2', status: 'Pending', date: '2023-09-02', total: '200', quantity: '4' },
   ];
   return (
     <>
       <Table>
         <Table.Header>
-          <tr>
-            {columns.map((column) => (
-              <th key={column.key} scope='col' className='px-6 py-3 text-start'>
-                {column.header}
-              </th>
+          <Table.HeaderRow>
+            {headers.map((header) => (
+              <Table.HeaderCell key={header.field}>{header.label}</Table.HeaderCell>
             ))}
-          </tr>
+          </Table.HeaderRow>
         </Table.Header>
         <Table.Body>
-          {data.map((row) => (
+          {rows.map((row) => (
             <Table.Row key={row.id}>
-              {columns.map((column) => (
-                <Table.Cell key={column.key} header={column.header}>
-                  {column.renderCell(row)}
+              {headers.map((header) => (
+                <Table.Cell key={header.field} header={header.label}>
+                  {row[header.field]}
                 </Table.Cell>
               ))}
             </Table.Row>

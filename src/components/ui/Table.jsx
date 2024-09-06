@@ -9,7 +9,23 @@ const Table = ({ children, className }) => {
 };
 
 const TableHeader = ({ children }) => {
-  return <thead className='hidden border-b text-sm font-medium sm:table-header-group'>{children}</thead>;
+  return <thead className='hidden sm:table-header-group'>{children}</thead>;
+};
+
+const TableHeaderRow = ({ children, className }) => {
+  return (
+    <tr className={`border-b text-sm font-medium ${className}`} role='row'>
+      {children}
+    </tr>
+  );
+};
+
+const TableHeaderCell = ({ children, className }) => {
+  return (
+    <th scope='col' className={`px-6 py-3 text-start ${className}`} role='columnheader'>
+      {children}
+    </th>
+  );
 };
 
 const TableBody = ({ children }) => {
@@ -27,10 +43,10 @@ const TableRow = ({ children, className }) => {
   );
 };
 
-const TableCell = ({ children, header, isMobileHeader = true }) => {
+const TableCell = ({ children, header, isMobileHeader = true, className }) => {
   return (
     <td
-      className={`relative flex items-center ${isMobileHeader ? 'justify-between' : 'justify-center'} px-6 py-4 text-center sm:table-cell`}
+      className={`relative flex items-center ${isMobileHeader ? 'justify-between' : 'justify-center'} px-6 py-4 text-center sm:table-cell ${className}`}
       role='cell'
     >
       {isMobileHeader && (
@@ -43,7 +59,10 @@ const TableCell = ({ children, header, isMobileHeader = true }) => {
   );
 };
 
+// Compound components for the Table
 Table.Header = TableHeader;
+Table.HeaderRow = TableHeaderRow;
+Table.HeaderCell = TableHeaderCell;
 Table.Body = TableBody;
 Table.Row = TableRow;
 Table.Cell = TableCell;
