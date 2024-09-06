@@ -1,6 +1,7 @@
 import { GenericModal, Slider } from '@/components';
 import Groups from '@/components/website/Groups';
 import TableList from '@/components/website/TableList';
+import AdvTableList from '@/components/website/AdvTableList';
 import { getTranslations } from 'next-intl/server';
 import React from 'react';
 
@@ -19,9 +20,15 @@ export default async function HomePage() {
         <Slider />
       </div>
       <div className='mt-16'>
+        AdvTableList****
+        <AdvTableList />
+      </div>
+      <div className='mt-16'>
+        TableList****
         <TableList />
       </div>
       <div className='mt-16'>
+        Groups****
         <Groups />
       </div>
     </div>

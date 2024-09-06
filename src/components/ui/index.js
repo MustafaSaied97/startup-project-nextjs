@@ -11,4 +11,5 @@ export { default as CustomDataPicker } from './CustomDataPicker.jsx';
 export { default as DatePicker } from './DatePicker.jsx';
 export { default as LoadMoreButton } from './LoadMoreButton.jsx';
 export { default as Pagination } from './Pagination.jsx';
+export { default as SimpleTable } from './SimpleTable.jsx';
 export { default as Table } from './Table.jsx';

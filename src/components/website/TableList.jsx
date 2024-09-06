@@ -6,7 +6,7 @@ import useCachedRequest from '@/hooks/useCachedRequest';
 import useLocale from '@/hooks/useLocale';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Button, Pagination, Table } from '../ui';
+import { Button, Pagination, SimpleTable } from '../ui';
 export default function TableList() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -33,7 +33,7 @@ export default function TableList() {
 
   return (
     <>
-      <Table columns={columns} data={ProductsRes?.data} />
+      <SimpleTable columns={columns} data={ProductsRes?.data} isMobileHeader={false} />
       <Pagination
         currentPage={ProductsRes?.current_page}
         totalPages={ProductsRes?.pages_total}
