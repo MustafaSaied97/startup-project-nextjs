@@ -23,7 +23,7 @@ export default function ProfilePage() {
     <section className='app-container relative my-9'>
       other pages
       <div className='w-4'>
-        <Icons.EmptyWishlist color='red' />
+        <Icons.EmptyWishlist  />
       </div>
       <FormModal />
       <FormComponent />

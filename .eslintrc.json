@@ -1,17 +1,36 @@
 {
-  "extends": ["eslint:recommended", "next/core-web-vitals"],
+  // Extends standard ESLint recommendations, Next.js Core Web Vitals, and TypeScript plugins
+  "extends": [
+    "eslint:recommended",
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended", // TypeScript recommended rules
+    "plugin:react/recommended", // React-specific linting rules
+    "plugin:react-hooks/recommended" // React Hooks specific linting rules
+  ],
+  "parser": "@typescript-eslint/parser", // Specifies the ESLint parser for TypeScript
+  "plugins": ["@typescript-eslint"], // Adds TypeScript plugin
+
   "rules": {
-    "react/prop-types": "off",
-    "no-unused-vars": "warn"
+    "react/prop-types": "off", // Prop-types are not used in TypeScript
+    "no-unused-vars": "warn", // Warn for unused variables
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }], // Allow unused variables starting with "_"
+    "@typescript-eslint/explicit-module-boundary-types": "off" // Disable rule for explicit return types
   },
 
+  // Defining globals used in the project
   "globals": {
-    "Promise": true,
-    "Set": true,
-    "window": true
+    "Promise": "readonly",
+    "Set": "readonly",
+    "window": "readonly"
   },
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect" // Automatically detect the react version
+    }
   }
 }

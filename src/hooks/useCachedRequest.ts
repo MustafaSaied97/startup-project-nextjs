@@ -7,8 +7,18 @@ const ongoingRequests = new Map();
 
 // Singleton instance of the cache manager
 const cache = requestCacheManager.getInstance();
-
-export default function useCachedRequest({ queryFn = async () => {}, queryKey = '', isImmediate = true }) {
+type Params<T> = {
+  queryFn: Promise<T>;
+  queryKey?: string;
+  isImmediate: boolean;
+};
+type ReturnedVal<T> = {
+  resData: T;
+  isLoading: boolean;
+  fetchData: Promise<any>;
+  error: null | any;
+};
+export default function useCachedRequest<T>({ queryFn = async () => {}, queryKey = '', isImmediate = true }: Params<T>): ReturnedVal<T> {
   const isCacheEnabled = Boolean(queryKey); // Check if caching is enabled
   const t = useTranslations();
   const [localResData, setLocalResData] = useState(isCacheEnabled ? cache.get(queryKey) : null); // Use cache data if available
@@ -16,7 +26,7 @@ export default function useCachedRequest({ queryFn = async () => {}, queryKey = 
   const [isLoading, setIsLoading] = useState(!localResData);
 
   const fetchData = useCallback(
-    async (options, append = false, appendedArrKey = 'data') => {
+    async (options?: any, append = false, appendedArrKey = 'data') => {
       setIsLoading(true);
 
       // If there's an ongoing request for this queryKey, await its promise and return the result
@@ -24,7 +34,7 @@ export default function useCachedRequest({ queryFn = async () => {}, queryKey = 
         try {
           const ongoingPromise = await ongoingRequests.get(queryKey);
           return ongoingPromise; // Return the result from the ongoing promise
-        } catch (err) {
+        } catch (err: any) {
           setIsLoading(false);
           setError(err);
           return Promise.reject(err);
@@ -32,7 +42,7 @@ export default function useCachedRequest({ queryFn = async () => {}, queryKey = 
       }
 
       const requestPromise = queryFn(options)
-        .then((response) => {
+        .then((response: any) => {
           // Append data if needed
           if (append && localResData) {
             response[appendedArrKey] = [...(localResData[appendedArrKey] || []), ...response[appendedArrKey]];
@@ -43,7 +53,7 @@ export default function useCachedRequest({ queryFn = async () => {}, queryKey = 
           ongoingRequests.delete(queryKey);
           return response; // Return the response for the fetchData call
         })
-        .catch((error) => {
+        .catch((error: any) => {
           notify(error?.data?.message ?? t('general.err_msg'), { type: 'error' });
           setError(error);
           ongoingRequests.delete(queryKey);

@@ -7,26 +7,49 @@ import useLocale from '@/hooks/useLocale';
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button, Pagination, SimpleTable } from '../ui';
+
+type Product = {
+  id: string;
+  name_ar: string;
+  name_en: string;
+  total: number;
+};
+
+type ProductsResponse = {
+  data: Product[];
+  current_page: number;
+  pages_total: number;
+};
+
+type Column = {
+  key: string;
+  header: string;
+  renderCell: (row: Product) => React.ReactNode; // Update the row type if needed
+};
+
 export default function TableList() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const t = useTranslations();
   const { locale } = useLocale();
-  const { resData: ProductsRes, isLoading, fetchData } = useCachedRequest({ queryFn: apis.getProducts, queryKey: 'getProducts' });
-
+  const {
+    resData: ProductsRes,
+    isLoading,
+    fetchData,
+  } = useCachedRequest<ProductsResponse>({ queryFn: apis.getProducts, queryKey: 'getProducts' });
   useEffect(() => {
-    const currentPage = parseInt(searchParams.get('page') ?? 1);
+    const currentPage = parseInt(searchParams.get('page') ?? '1');
     (!ProductsRes || currentPage != ProductsRes?.current_page) && fetchData({ page: currentPage });
   }, [searchParams, ProductsRes?.current_page]);
 
-  const columns = [
+  const columns: Column[] = [
     { key: 'order_id', header: t('general.order_id'), renderCell: (row) => `#${row.id}` },
     {
       key: 'name',
       header: t('general.status'),
       renderCell: (row) => <button className='rounded-md  bg-gray-400/20 p-1'>{row[`name_${locale}`]}</button>,
     },
-    { key: 'date', header: t('general.date'), renderCell: (row) => row[`name_${locale}`] },
+    { key: 'date', header: t('general.date'), renderCell: (row) => row?.[`name_${locale}`] },
     { key: 'total', header: t('general.total'), renderCell: (row) => `$${row.total}` },
     { key: 'quantity', header: t('general.quantity'), renderCell: (row) => `x` },
   ];

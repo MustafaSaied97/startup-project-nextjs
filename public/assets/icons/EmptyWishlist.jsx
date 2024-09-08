@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function EmptyWishlist({ size = 20 }) {
+export default function EmptyWishlist() {
   return (
     <svg
       className='svg-icon w-[90%]  md:w-[300px]'
