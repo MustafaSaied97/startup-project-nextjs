@@ -3,7 +3,7 @@ import { notify } from '@/utils';
 import { useTranslations } from 'next-intl';
 import { requestCacheManager } from '@/utils/requestCacheManager';
 
-type Params = {
+type HookParams = {
   queryFn: (options?: object) => Promise<any>;
   queryKey?: string;
   isImmediate?: boolean;
@@ -13,7 +13,7 @@ type FetchDataFn = (options?: object, append?: boolean, appendedArrKey?: string)
 const ongoingRequests = new Map();
 const cache = requestCacheManager.getInstance();
 
-export default function useCachedRequest({ queryFn = async () => {}, queryKey = '', isImmediate = true }: Params) {
+export default function useCachedRequest({ queryFn = async () => {}, queryKey = '', isImmediate = true }: HookParams) {
   const isCacheEnabled = Boolean(queryKey); // Check if caching is enabled
   const t = useTranslations();
   const [localResData, setLocalResData] = useState(isCacheEnabled ? cache.get(queryKey) : null); // Use cache data if available
