@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6", // or "es6", depending on your project requirements
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,12 +15,8 @@
     "jsx": "preserve", // Set to `react-jsx` for Next.js projects
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@/assets/*": [
-        "./public/assets/*"
-      ]
+      "@/*": ["./src/*"],
+      "@/assets/*": ["./public/assets/*"]
     },
     "incremental": true,
     "plugins": [
@@ -39,9 +31,8 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "next.config.js"
-, "public/assets/icons/EmptyWishlist.jsx"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "next.config.js",
+    "public/assets/icons/EmptyWishlist.jsx"
+  ],
+  "exclude": ["node_modules"]
 }
