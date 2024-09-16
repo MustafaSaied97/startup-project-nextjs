@@ -3,7 +3,7 @@ export const requestCacheManager = (() => {
 
   function createInstance() {
     const cache = new Map(); // Using Map to store cached responses
-
+    console.log('cache', cache);
     return {
       get: (key) => cache.get(key),
       set: (key, value) => cache.set(key, value),
