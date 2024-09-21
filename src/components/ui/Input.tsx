@@ -1,12 +1,20 @@
 'use client';
 import { useState } from 'react';
-import { useController } from 'react-hook-form';
+import { Control, useController, RegisterOptions } from 'react-hook-form';
 import * as Icons from '@/assets/icons';
 import FieldErrorMsg from './FieldErrorMsg';
+type InputProps = {
+  control: Control<any>; // Adjust the type parameter to match your form data type
+  floatingLabel?: boolean | string;
+  type?: string;
+  label?: string;
+  name: string;
+  rules?: RegisterOptions;
+  className?: string;
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
-export default function Input({ control, floatingLabel, type = 'text', label, name, rules, className = '', ...inputProps }) {
+export default function Input({ control, floatingLabel, type = 'text', label, name, rules, className = '', ...inputProps }: InputProps) {
   const [showPass, setShowPass] = useState(false);
-
   const {
     field,
     formState: { errors },

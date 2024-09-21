@@ -1,7 +1,14 @@
-export const requestCacheManager = (() => {
-  let instance;
 
-  function createInstance() {
+type CacheInstance = {
+  get: (key: string) => any;
+  set: (key: string, value: any) => Map<any, any>;
+  has: (key: string) => boolean;
+  delete: (key: string) => boolean;
+};
+export const requestCacheManager = (() => {
+  let cacheInstance: CacheInstance;
+
+  function createInstance(): CacheInstance {
     const cache = new Map(); // Using Map to store cached responses
     console.log('cache', cache);
     return {
@@ -14,10 +21,10 @@ export const requestCacheManager = (() => {
 
   return {
     getInstance: () => {
-      if (!instance) {
-        instance = createInstance();
+      if (!cacheInstance) {
+        cacheInstance = createInstance();
       }
-      return instance;
+      return cacheInstance;
     },
   };
 })();
