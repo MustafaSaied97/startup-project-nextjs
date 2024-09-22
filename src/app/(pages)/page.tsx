@@ -9,9 +9,15 @@ export default async function HomePage() {
   const t = await getTranslations();
   return (
     <div className='app-container text relative my-9  py-9 text-[10px] font-bold text-blue-700'>
-      <Popover />
-      <Dialog />
-      <Anchor />
+      <section className='flex flex-col gap-4'>
+        <Popover />
+        <hr />
+        <Dialog />
+        <hr />
+        <Anchor />
+      </section>
+      <hr className='mt-6' />
+      <hr />
 
       <p className='text-xl font-thin'>{t('home')}thin</p>
       <p className='text-xl font-medium'>{t('home')}medium</p>

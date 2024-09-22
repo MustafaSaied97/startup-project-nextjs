@@ -3,7 +3,7 @@ import React from 'react';
 export default function Popover() {
   return (
     <>
-      <button popoverTarget='mydiv'>Click me!</button>
+      <button popoverTarget='mydiv'>Popover</button>
       <div className=' fixed m-auto rounded-md bg-gray-300 p-6 backdrop:bg-slate-950/10' popover='auto' id='mydiv'>
         <h2>Popover</h2>
         <hr />
