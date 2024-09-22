@@ -1,4 +1,4 @@
-import { GenericModal, Slider } from '@/components';
+import { Anchor, Dialog, Popover, GenericModal, Slider } from '@/components';
 import Groups from '@/components/website/Groups';
 import TableList from '@/components/website/TableList';
 import AdvTableList from '@/components/website/AdvTableList';
@@ -9,6 +9,10 @@ export default async function HomePage() {
   const t = await getTranslations();
   return (
     <div className='app-container text relative my-9  py-9 text-[10px] font-bold text-blue-700'>
+      <Popover />
+      <Dialog />
+      <Anchor />
+
       <p className='text-xl font-thin'>{t('home')}thin</p>
       <p className='text-xl font-medium'>{t('home')}medium</p>
       <p className='text-xl font-semibold'>{t('home')}semibold</p>

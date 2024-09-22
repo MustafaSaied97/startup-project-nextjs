@@ -13,3 +13,6 @@ export { default as LoadMoreButton } from './LoadMoreButton';
 export { default as Pagination } from './Pagination';
 export { default as SimpleTable } from './SimpleTable';
 export { default as Table } from './Table';
+export { default as Dialog } from './Dialog';
+export { default as Popover } from './Popover';
+export { default as Anchor } from './Anchor';
