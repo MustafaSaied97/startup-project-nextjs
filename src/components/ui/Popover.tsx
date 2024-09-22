@@ -15,7 +15,7 @@ export default function Popover() {
         ref={popoverRef}
         className=' fixed m-auto rounded-md bg-gray-300 p-6 backdrop:bg-slate-950/10'
         onToggle={handleToggle}
-        popover='manual'
+        popover='auto'
         id='mydiv'
       >
         <h2>Popover</h2>
