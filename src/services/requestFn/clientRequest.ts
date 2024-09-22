@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { getCookie } from 'cookies-next';
 import { setCookies, deleteCookies } from '@/utils/cookies-action';
 
@@ -33,8 +33,25 @@ const axiosInstance = axios.create({
 //     return Promise.reject(error);
 //   }
 // );
-
-export async function withAxios({ auth = false, method, url, formData = {}, withFiles = false, arrayBufferResponse = false, abortControllerSignal = null }) {
+type WithAxiosParams = {
+  auth?: boolean; // Optional
+  method: string;
+  url: string;
+  formData?: Record<string, any>; // Allow any shape for formData
+  withFiles?: boolean;
+  arrayBufferResponse?: boolean;
+  abortControllerSignal?: AbortSignal | null;
+  [key: string]: any; // Allow additional parameters
+};
+export async function withAxios({
+  auth = false,
+  method,
+  url,
+  formData = {},
+  withFiles = false,
+  arrayBufferResponse = false,
+  abortControllerSignal = null,
+}: WithAxiosParams): Promise<any> {
   if (!url || !method) {
     console.error('Both the URL and the method must be provided.');
     return Promise.reject({ message: 'Both the URL and the method must be provided.' });
@@ -45,7 +62,7 @@ export async function withAxios({ auth = false, method, url, formData = {}, with
     return Promise.reject({ message: 'you are not online please check your network' });
   }
 
-  let AccessTokens = null;
+  let AccessTokens: string | null = null;
   if (auth) {
     //1- get token from cookies
     AccessTokens = JSON.parse(getCookie('authData') || '{}')?.token;
@@ -74,7 +91,7 @@ export async function withAxios({ auth = false, method, url, formData = {}, with
     },
     ...(abortControllerSignal && { signal: abortControllerSignal }), // for cancelling the request
   })
-    .then((res) => res.data)
+    .then((res: AxiosResponse) => res.data)
     .catch((err) => {
       if (axios.isCancel(err)) {
         // request was intercepted by a signal cancellation

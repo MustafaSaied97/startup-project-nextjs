@@ -1,6 +1,25 @@
 import { getCookies } from '@/utils/cookies-action';
 import { headers } from 'next/headers';
-export async function makeServerRequest({ auth = false, method, url, formData = null, withFiles = false, arrayBufferResponse = false, abortControllerSignal = null }) {
+type MakeServerRequestParams = {
+  auth?: boolean; // Optional
+  method: string;
+  url: string;
+  formData?: Record<string, any>; // Allow any shape for formData
+  withFiles?: boolean;
+  arrayBufferResponse?: boolean;
+  abortControllerSignal?: AbortSignal | null;
+  [key: string]: any; // Allow additional parameters
+};
+
+export async function makeServerRequest({
+  auth = false,
+  method,
+  url,
+  formData = {},
+  withFiles = false,
+  arrayBufferResponse = false,
+  abortControllerSignal = null,
+}: MakeServerRequestParams): Promise<any> {
   if (!url || !method) {
     console.error('Both the URL and the method must be provided.');
     return Promise.reject({});
@@ -9,7 +28,7 @@ export async function makeServerRequest({ auth = false, method, url, formData = 
   if (auth) {
     //1- get token from storage
 
-    AccessTokens = JSON.parse((await getCookies('authData')) || '{}')?.token;
+    AccessTokens = JSON.parse((await getCookies('authData')) || '{}')?.token || '';
 
     //2- check if it expired or not
     //if not store token in AccessTokens
@@ -20,7 +39,7 @@ export async function makeServerRequest({ auth = false, method, url, formData = 
 
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}${url}`, {
-      method: method, // *GET, POST, PUT, DELETE, etc.
+      method, // *GET, POST, PUT, DELETE, etc.
       headers: {
         'X-Frontend-Domain': domainName,
         Accept: 'application/json',
@@ -28,10 +47,13 @@ export async function makeServerRequest({ auth = false, method, url, formData = 
         'Accept-Language': 'ar',
         ...(AccessTokens && { Authorization: `Bearer ${AccessTokens}` }),
       },
-      ...(formData && { body: formData }),
+      ...(formData && { body: JSON.stringify(formData) }),
       next: { revalidate: 1 * 60 },
     });
-    const data = response.json();
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`); // Handle HTTP errors
+    }
+    const data = await response.json();
     return Promise.resolve(data);
   } catch (err) {
     Promise.reject(err);
