@@ -1,23 +1,29 @@
 'use client';
 import * as Icons from '@/assets/icons';
-import React, { useEffect, createContext, useContext, useRef, ReactNode } from 'react';
+import React, { useEffect, createContext, useContext, useRef, ReactNode, HTMLAttributes } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 interface DialogContextProps {
   onClose: () => void;
 }
 
-const DialogContext = createContext<DialogContextProps | undefined>(undefined);
-
-interface DialogProps {
+interface DialogProps extends HTMLAttributes<HTMLElement> {
   onClose: () => void;
   isScrollBlocked?: boolean;
   children: ReactNode;
   className?: string;
-  [key: string]: any;
+}
+interface DialogHeaderProps extends HTMLAttributes<HTMLElement> {
+  children?: ReactNode;
+  className?: string;
+}
+interface DialogComponent extends React.FC<DialogProps> {
+  Header: React.FC<DialogHeaderProps>;
 }
 
-const Dialog: React.FC<DialogProps> & { [k: string]: any } = ({ onClose, isScrollBlocked = false, children, className, ...props }) => {
+const DialogContext = createContext<DialogContextProps | undefined>(undefined);
+
+const Dialog: DialogComponent = ({ onClose, isScrollBlocked = false, children, className, ...props }) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const showDialog = () => {
     dialogRef.current?.showModal();
@@ -70,12 +76,6 @@ const Dialog: React.FC<DialogProps> & { [k: string]: any } = ({ onClose, isScrol
   );
 };
 
-interface DialogHeaderProps {
-  children?: ReactNode;
-  className?: string;
-  [key: string]: any;
-}
-
 const DialogHeader: React.FC<DialogHeaderProps> = ({ children, className, ...headerProps }) => {
   const context = useContext(DialogContext);
   const { onClose } = context!; // Non-null assertion
@@ -90,6 +90,6 @@ const DialogHeader: React.FC<DialogHeaderProps> = ({ children, className, ...hea
   );
 };
 
-Dialog.Header = DialogHeader as React.FC<DialogHeaderProps>;
+Dialog.Header = DialogHeader;
 
 export default Dialog;
