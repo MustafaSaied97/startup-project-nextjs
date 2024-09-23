@@ -285,7 +285,7 @@ input:-webkit-autofill:focus {
 .dialog-animation {
   /*styling when dialog close*/
   opacity: 0;
-  transform: translateY(100vh);
+  // transform: translateY(100vh);
   transition: all 0.3s allow-discrete;
   &::backdrop {
     opacity: 0;
@@ -295,7 +295,7 @@ input:-webkit-autofill:focus {
   &[open] {
     /*styling when dialog open*/
     opacity: 1;
-    transform: translateY(0);
+    // transform: translateY(0);
     &::backdrop {
       opacity: 1;
     }
@@ -307,7 +307,7 @@ input:-webkit-autofill:focus {
     &[open] {
       /*styling when transition form close to open ---> is the styling when dialog close*/
       opacity: 0;
-      transform: translateY(100vh);
+      // transform: translateY(100vh);
       &::backdrop {
         opacity: 0;
       }
