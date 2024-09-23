@@ -1,4 +1,4 @@
-import { Anchor, Dialog, Popover, GenericModal, Slider } from '@/components';
+import { Anchor, Dialog, Popover, GenericModal, Slider, GenericDialog } from '@/components';
 import Groups from '@/components/website/Groups';
 import TableList from '@/components/website/TableList';
 import AdvTableList from '@/components/website/AdvTableList';
@@ -12,7 +12,7 @@ export default async function HomePage() {
       <section className='flex flex-col gap-4'>
         <Popover />
         <hr />
-        <Dialog />
+        {/* <Dialog /> */}
         <hr />
         <Anchor />
       </section>
@@ -24,6 +24,8 @@ export default async function HomePage() {
       <p className='text-xl font-semibold'>{t('home')}semibold</p>
       <p className='text-xl font-bold'>{t('home')}bold</p>
       <p className='text-xl font-[1000]'>{t('home')}extrabold</p>
+      <GenericDialog />
+      <hr className='mt-6' />
 
       <GenericModal />
       <div className='mt-16'>

@@ -7,10 +7,10 @@ export default function GenericModal() {
   return (
     <>
       <button onClick={() => setIsModalOpen(true)} className='text-red-400'>
-        modal
+        open modal
       </button>
       {isModalOpen && (
-        <Modal onClose={() => setIsModalOpen(false)}>
+        <Modal onClose={() => setIsModalOpen(false)} className='bg-white'>
           <Modal.Header />
           <Modal.Body>
             <h1 className='text-center text-lg font-normal sm:text-xl'>{'general.cancel_order'}</h1>

@@ -1,3 +1,6 @@
+import { Config } from 'tailwindcss';
+const plugin = require('tailwindcss/plugin');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -52,5 +55,24 @@ module.exports = {
       },
     },
   },
-  plugins: [],
-};
+  plugins: [
+    plugin(function ({
+      addUtilities,
+      addVariant,
+      e,
+      config,
+    }: {
+      addUtilities: (utilities: Record<string, any>) => void;
+      addVariant: (name: string, ...arg: any) => void;
+      [k: string]: any;
+    }) {
+      // Adding custom utilities for transition-behavior
+      addUtilities({
+        '.transition-allow-discrete': {
+          transitionBehavior: 'allow-discrete',
+        },
+      });
+      addVariant('starting-style', '@starting-style');
+    }),
+  ],
+} satisfies Config;

@@ -1,52 +1,95 @@
 'use client';
-import React, { useRef, useEffect } from 'react';
+import * as Icons from '@/assets/icons';
+import React, { useEffect, createContext, useContext, useRef, ReactNode } from 'react';
+import { twMerge } from 'tailwind-merge';
 
-export default function Dialog() {
-  // const [isOpenDialog,setIsOpenDialog]=us;
+interface DialogContextProps {
+  onClose: () => void;
+}
+
+const DialogContext = createContext<DialogContextProps | undefined>(undefined);
+
+interface DialogProps {
+  onClose: () => void;
+  isScrollBlocked?: boolean;
+  children: ReactNode;
+  className?: string;
+  [key: string]: any;
+}
+
+const Dialog: React.FC<DialogProps> & { [k: string]: any } = ({ onClose, isScrollBlocked = false, children, className, ...props }) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
-
   const showDialog = () => {
     dialogRef.current?.showModal();
-    document.documentElement.style.overflow = 'hidden';
   };
-
   const closeDialog = () => {
     dialogRef.current?.close();
+    // for animation
+    setTimeout(() => {
+      onClose();
+    }, 500);
   };
+  useEffect(() => {
+    if (!isScrollBlocked) return;
+    document.documentElement.style.overflow = 'hidden';
+    return () => {
+      document.documentElement.style.overflow = '';
+    };
+  }, [isScrollBlocked]);
 
-  const closeDialogOnOutsideClick = (e: React.MouseEvent<HTMLDialogElement>) => {
-    // Check if the click happened outside the dialog content
-    if (e.target === dialogRef.current) {
-      dialogRef.current?.close();
+  useEffect(() => {
+    if (dialogRef.current) {
+      showDialog();
     }
-  };
-  // useEffect(() => {
-  //   // if (!isScrollBlocked) return;
-  //   document.documentElement.style.overflow = 'hidden';
-  //   return () => {
-  //     document.documentElement.style.overflow = '';
-  //   };
-  // }, []);
-  const onCloseDialog = (e: React.ToggleEvent<HTMLDialogElement>) => {
-    console.log('dialog is closed');
+  }, []);
+
+  const onBackdropClick = (e: React.MouseEvent<HTMLDialogElement>) => {
+    if (e.target === dialogRef.current) {
+      closeDialog();
+    }
   };
 
   return (
-    <>
-      <button onClick={showDialog}>Open Dialog</button>
-
+    <DialogContext.Provider value={{ onClose: closeDialog }}>
       <dialog
         ref={dialogRef}
-        className='dialog-animation m-auto bg-transparent p-0 backdrop:bg-slate-600/10 backdrop:backdrop-blur-[1px] backdrop:backdrop-filter'
-        onClick={closeDialogOnOutsideClick}
-        onClose={onCloseDialog}
+        className={twMerge(
+          'backdrop:bg-slate-600/10 backdrop:backdrop-blur-[1px] backdrop:backdrop-filter',
+          'dialog-animation',
+          ' m-auto bg-transparent  p-0'
+        )}
+        onClick={onBackdropClick}
+        onClose={() => closeDialog()}
+        {...props}
       >
-        <div className='rounded-md bg-gray-300 p-4'>
-          <h1>Hello from dialog</h1>
-          <button onClick={closeDialog}>Close</button>
+        <div className={twMerge('max-h-[70vh] w-[90vw] max-w-[500px]  overflow-y-auto rounded-md bg-white p-2 sm:w-[70vw]', className)}>
+          {children}
         </div>
-        <main></main>
       </dialog>
-    </>
+    </DialogContext.Provider>
   );
+};
+
+interface DialogHeaderProps {
+  children?: ReactNode;
+  className?: string;
+  [key: string]: any;
 }
+
+const DialogHeader: React.FC<DialogHeaderProps> = ({ children, className, ...headerProps }) => {
+  const context = useContext(DialogContext);
+  const { onClose } = context!; // Non-null assertion
+  return (
+    <header className={twMerge('flex w-full items-start justify-end rounded-t', className)} {...headerProps}>
+      {children || (
+        <button type='button' className='h-6 w-6 rounded-md text-center text-white hover:bg-gray-300' onClick={onClose}>
+          <Icons.Close />
+        </button>
+      )}
+    </header>
+  );
+};
+
+Dialog.Header = DialogHeader as React.FC<DialogHeaderProps>;
+
+export default Dialog;
