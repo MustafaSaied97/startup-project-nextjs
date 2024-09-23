@@ -282,7 +282,7 @@ input:-webkit-autofill:focus {
   opacity: 1;
 }
 
-.dialog-with-animation {
+.dialog-animation {
   /*styling when dialog close*/
   opacity: 0;
   transform: translateY(100vh);
@@ -300,17 +300,10 @@ input:-webkit-autofill:focus {
       opacity: 1;
     }
   }
-
-  //static style for backdrop
-  &::backdrop {
-    background-color: rgb(156 163 175 / 0.2);
-    -webkit-backdrop-filter: blur(1px);
-    backdrop-filter: blur(1px);
-  }
 }
 
 @starting-style {
-  .dialog-with-animation {
+  .dialog-animation {
     &[open] {
       /*styling when transition form close to open ---> is the styling when dialog close*/
       opacity: 0;
