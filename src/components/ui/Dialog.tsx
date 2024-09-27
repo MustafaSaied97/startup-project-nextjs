@@ -1,4 +1,5 @@
 'use client';
+import loading from '@/app/(pages)/loading';
 import * as Icons from '@/assets/icons';
 import React, { useEffect, createContext, useContext, useRef, ReactNode, HTMLAttributes } from 'react';
 import { twMerge } from 'tailwind-merge';
@@ -55,6 +56,9 @@ const Dialog: DialogComponent = ({ onClose, isScrollBlocked = false, children, c
     }
   };
 
+  const status = { loading: 'Loading', error: 'Error', success: 'Success' } as const;
+  type Status = (keyof typeof status)[number];
+
   return (
     <DialogContext.Provider value={{ onClose: closeDialog }}>
       <dialog
@@ -82,7 +86,7 @@ const DialogHeader: React.FC<DialogHeaderProps> = ({ children, className, ...hea
   return (
     <header className={twMerge('flex w-full items-start justify-end rounded-t', className)} {...headerProps}>
       {children || (
-        <button type='button' className='h-6 w-6 rounded-md text-center text-white hover:bg-gray-300' onClick={onClose}>
+        <button type='button' title='close button' className='h-6 w-6 rounded-md text-center text-white hover:bg-gray-300' onClick={onClose}>
           <Icons.Close />
         </button>
       )}
