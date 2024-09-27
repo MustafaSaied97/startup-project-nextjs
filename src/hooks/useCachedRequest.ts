@@ -9,12 +9,12 @@ type HookParams<T> = {
   queryKey?: string;
   isImmediate?: boolean;
 };
-
-const ongoingRequests = new Map();
-const cache = requestCacheManager.getInstance();
 interface DynamicObject {
   [key: string]: any; // or restrict it to arrays like: [key: string]: any[];
 }
+const ongoingRequests = new Map();
+const cache = requestCacheManager.getInstance();
+
 export default function useCachedRequest<T extends DynamicObject>({ queryFn, queryKey = '', isImmediate = true }: HookParams<T>) {
   const isCacheEnabled = Boolean(queryKey); // Check if caching is enabled
   const t = useTranslations();
